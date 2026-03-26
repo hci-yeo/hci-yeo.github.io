@@ -180,10 +180,10 @@ a:focus-visible,
     flex-shrink: 0;
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow: visible;
 }
 
 .profile-container {
