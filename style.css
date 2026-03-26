@@ -249,7 +249,30 @@ a:focus-visible,
     font-size: 1.1rem;
     font-weight: 500;
     color: var(--text-secondary);
-    margin-bottom: 35px;
+    margin-bottom: 12px;
+}
+
+.cv-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(13, 148, 136, 0.28);
+    background: rgba(13, 148, 136, 0.08);
+    color: var(--accent-primary);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    gap: 8px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+}
+
+.cv-btn:hover {
+    color: #ffffff;
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
 }
 
 .social-links {
@@ -931,6 +954,10 @@ strong {
 
     .institution {
         margin-bottom: 14px;
+    }
+
+    .cv-btn {
+        margin-bottom: 16px;
     }
 
     .social-links {
