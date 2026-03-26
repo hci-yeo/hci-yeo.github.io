@@ -1,6 +1,28 @@
 {
   "publications": [
     {
+      "title": "Event-Based Referred Vibrotactile Feedback for Bare-Hand XR Interaction",
+      "authorsHtml": "J Lee; H Seo; H Lee; M Baeck; <strong>HS Yeo</strong>; W Woo",
+      "venueName": "IEEE VR 2026 & TVCG",
+      "venueType": "Conference/Journal",
+      "image": "https://img.youtube.com/vi/1PYyLgDcN-I/hqdefault.jpg",
+      "imageAlt": "Swag Interface paper thumbnail",
+      "pdf": "",
+      "video": "https://www.youtube.com/watch?v=1PYyLgDcN-I",
+      "firstAuthorHSYeo": false
+    },
+    {
+      "title": "Whirling Interface: Hand-based Motion Matching Selection for Small Target on XR Displays",
+      "authorsHtml": "J Lee, SY Oh, M Baeck, <strong>HS Yeo</strong>, HI Kim, T Starner, W Woo",
+      "venueName": "IEEE ISMAR 2024",
+      "venueType": "Conference",
+      "image": "https://img.youtube.com/vi/rWTI_7G-8ss/hqdefault.jpg",
+      "imageAlt": "Whirling Interface paper thumbnail",
+      "pdf": "https://ieeexplore.ieee.org/document/10765156",
+      "video": "https://www.youtube.com/watch?v=rWTI_7G-8ss",
+      "firstAuthorHSYeo": false
+    },
+    {
       "title": "GestureMark: Shortcut Input Technique using Smartwatch Touch Gestures for XR Glasses",
       "authorsHtml": "J Lee, M Baeck, <strong>HS Yeo</strong>, T Starner, W Woo",
       "venueName": "Augmented Humans 2024",
@@ -37,7 +59,7 @@
       "title": "JINSense: Repurposing electrooculography sensors on smart glass for midair gesture and context sensing",
       "authorsHtml": "<strong>HS Yeo</strong>, J Lee, W Woo, H Koike, AJ Quigley, K Kunze",
       "venueName": "ACM CHI 2021 Extended Abstracts",
-      "venueType": "Conference",
+      "venueType": "Poster",
       "image": "https://img.youtube.com/vi/Qi-VnT5ZU4s/hqdefault.jpg",
       "imageAlt": "JINSense paper thumbnail",
       "pdf": "https://dl.acm.org/doi/10.1145/3411763.3451741",
@@ -93,13 +115,14 @@
       "authorsHtml": "A Gupta, C Ji, <strong>HS Yeo</strong>, A Quigley, D Vogel",
       "venueName": "ACM CHI 2019",
       "venueType": "Conference",
-      "image": "https://via.placeholder.com/150x200.png?text=Rotoswype+Ring",
+      "image": "https://img.youtube.com/vi/vxylqyTusLA/hqdefault.jpg",
       "imageAlt": "Rotoswype ring paper thumbnail",
       "pdf": "https://dl.acm.org/doi/10.1145/3290605.3300244",
+      "video": "https://www.youtube.com/watch?v=vxylqyTusLA",
       "firstAuthorHSYeo": false
     },
     {
-      "title": "Wrist: Watch-ring interaction and sensing technique for wrist gestures and macro-micro pointing",
+      "title": "WRIST: Watch-ring interaction and sensing technique for wrist gestures and macro-micro pointing",
       "authorsHtml": "<strong>HS Yeo</strong>, J Lee, H Kim, A Gupta, A Bianchi, D Vogel, H Koike, W Woo",
       "venueName": "ACM MobileHCI 2019",
       "venueType": "Conference",
@@ -135,7 +158,7 @@
       "firstAuthorHSYeo": true
     },
     {
-      "title": "Adam: Adapting multi-user interfaces for collaborative environments in real-time",
+      "title": "AdaM: Adapting multi-user interfaces for collaborative environments in real-time",
       "authorsHtml": "S Park, C Gebhardt, R Rädle, AM Feit, H Vrzakova, NR Dayama, <strong>HS Yeo</strong>, A Quigley, A Oulasvirta",
       "venueName": "ACM CHI 2018",
       "venueType": "Conference",
@@ -146,13 +169,13 @@
       "firstAuthorHSYeo": false
     },
     {
-      "title": "Investigating tilt-based gesture keyboard entry for single-handed text entry on large devices",
+      "title": "(SWiM) Investigating tilt-based gesture keyboard entry for single-handed text entry on large devices",
       "authorsHtml": "<strong>HS Yeo</strong>, XS Phang, SJ Castellucci, PO Kristensson, A Quigley",
       "venueName": "ACM CHI 2017",
       "venueType": "Conference",
       "image": "https://img.youtube.com/vi/8BuXIlQ7_XM/hqdefault.jpg",
       "imageAlt": "RotoSwype paper thumbnail",
-      "pdf": "https://dl.acm.org/doi/pdf/10.1145/3025453.3025784",
+      "pdf": "https://dl.acm.org/doi/10.1145/3025453.3025520",
       "video": "https://www.youtube.com/watch?v=8BuXIlQ7_XM",
       "firstAuthorHSYeo": true
     },
@@ -174,7 +197,7 @@
       "venueType": "Conference",
       "image": "https://img.youtube.com/vi/B6sn2vRJXJ4/hqdefault.jpg",
       "imageAlt": "RadarCat paper thumbnail",
-      "pdf": "https://dl.acm.org/doi/pdf/10.1145/2984511.2984515",
+      "pdf": "https://dl.acm.org/doi/10.1145/2984511.2984515",
       "video": "https://www.youtube.com/watch?v=B6sn2vRJXJ4",
       "firstAuthorHSYeo": true
     },
@@ -214,6 +237,7 @@
       "awards": [
         "Best Demo Award"
       ],
+      "pdf": "https://dl.acm.org/doi/10.1145/2984751.2984763",
       "firstAuthorHSYeo": true
     },
     {
@@ -231,20 +255,21 @@
       "title": "Augmented learning for sports using wearable head-worn and wrist-worn devices",
       "authorsHtml": "<strong>HS Yeo</strong>, H Koike, A Quigley",
       "venueName": "IEEE VR 2019",
-      "venueType": "Conference",
-      "image": "https://via.placeholder.com/150x200.png?text=Augmented+Learning",
+      "venueType": "Workshop",
+      "image": "images/pool.png",
       "imageAlt": "Augmented learning paper thumbnail",
-      "pdf": "https://ieeexplore.ieee.org/document/8798158",
+      "pdf": "https://ieeexplore.ieee.org/document/8798054",
       "firstAuthorHSYeo": true
     },
     {
       "title": "Counterpoint: exploring mixed-scale gesture interaction for AR applications",
       "authorsHtml": "B Ens, A Quigley, <strong>HS Yeo</strong>, P Irani, T Piumsomboon, M Billinghurst",
       "venueName": "ACM CHI 2018 Extended Abstracts",
-      "venueType": "Conference",
-      "image": "https://via.placeholder.com/150x200.png?text=Counterpoint",
+      "venueType": "Poster",
+      "image": "https://img.youtube.com/vi/TRfqNtt1VxY/hqdefault.jpg",
       "imageAlt": "Counterpoint paper thumbnail",
-      "pdf": "https://dl.acm.org/doi/pdf/10.1145/3170427.3188624",
+      "pdf": "https://dl.acm.org/doi/10.1145/3170427.3188513",
+      "video": "https://www.youtube.com/watch?v=TRfqNtt1VxY",
       "firstAuthorHSYeo": false
     },
     {
@@ -254,17 +279,17 @@
       "venueType": "Conference",
       "image": "https://img.youtube.com/vi/IQ_LkPM_GHs/hqdefault.jpg",
       "imageAlt": "Itchy nose paper thumbnail",
-      "pdf": "https://dl.acm.org/doi/pdf/10.1145/3123024.3123033",
+      "pdf": "https://dl.acm.org/doi/10.1145/3123021.3123060",
       "video": "https://www.youtube.com/watch?v=IQ_LkPM_GHs",
       "firstAuthorHSYeo": false
     },
     {
-      "title": "Specam: Sensing surface color and material with the front-facing camera of a mobile device",
+      "title": "SpeCam: Sensing surface color and material with the front-facing camera of a mobile device",
       "authorsHtml": "<strong>HS Yeo</strong>, J Lee, A Bianchi, D Harris-Birtill, A Quigley",
       "venueName": "ACM MobileHCI 2017",
       "venueType": "Conference",
       "image": "https://img.youtube.com/vi/NxjbOVxcNuM/hqdefault.jpg",
-      "imageAlt": "Specam paper thumbnail",
+      "imageAlt": "SpeCam paper thumbnail",
       "pdf": "https://dl.acm.org/doi/10.1145/3098279.3098541",
       "video": "https://www.youtube.com/watch?v=NxjbOVxcNuM",
       "awards": [
@@ -273,13 +298,13 @@
       "firstAuthorHSYeo": true
     },
     {
-      "title": "Radar sensing in human-robot interaction",
+      "title": "(Solinteraction) Radar sensing in human-robot interaction",
       "authorsHtml": "<strong>HS Yeo</strong>, A Quigley",
       "venueName": "ACM interactions, 2017",
       "venueType": "Magazine",
-      "image": "https://via.placeholder.com/150x200.png?text=Radar+HCI",
+      "image": "https://dl.acm.org/cms/attachment/9ff38a7c-0fde-4195-b366-8cf854db77a8/ins06.gif",
       "imageAlt": "Radar HCI paper thumbnail",
-      "pdf": "https://dl.acm.org/doi/pdf/10.1145/3152881",
+      "pdf": "https://interactions.acm.org/archive/view/january-february-2018/radar-sensing-in-human-computer-interaction",
       "firstAuthorHSYeo": true
     },
     {
@@ -289,7 +314,7 @@
       "venueType": "Conference",
       "image": "https://img.youtube.com/vi/ENWd0HZ0YZo/hqdefault.jpg",
       "imageAlt": "HMD Mixed Reality paper thumbnail",
-      "pdf": "https://ieeexplore.ieee.org/document/7344836",
+      "pdf": "https://diglib.eg.org/items/820b6df5-c584-435f-97c7-abbd1a4e8d7a",
       "video": "https://www.youtube.com/watch?v=ENWd0HZ0YZo",
       "firstAuthorHSYeo": false
     },
@@ -298,10 +323,21 @@
       "authorsHtml": "<strong>HS Yeo</strong>, XS Phang, HJ Lee, H Lim",
       "venueName": "Journal of Network and Computer Applications, 2014",
       "venueType": "Journal",
-      "image": "https://via.placeholder.com/150x200.png?text=Client+Storage",
+      "image": "images/multicloud.png",
       "imageAlt": "Client storage paper thumbnail",
       "pdf": "https://www.sciencedirect.com/science/article/abs/pii/S1084804514000897",
       "firstAuthorHSYeo": true
+    },
+    {
+      "title": "Exploring mixed-scale gesture interaction",
+      "authorsHtml": "B Ens, A Quigley, <strong>HS Yeo</strong>, P Irani, T Piumsomboon, M Billinghurst",
+      "venueName": "SIGGRAPH Asia 2017 Poster",
+      "venueType": "Poster",
+      "image": "https://img.youtube.com/vi/TRfqNtt1VxY/hqdefault.jpg",
+      "imageAlt": "Exploring mixed-scale gesture interaction paper thumbnail",
+      "pdf": "https://dl.acm.org/doi/10.1145/3145690.3145740",
+      "video": "https://www.youtube.com/watch?v=TRfqNtt1VxY",
+      "firstAuthorHSYeo": false
     }
   ]
 }

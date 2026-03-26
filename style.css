@@ -256,6 +256,8 @@ a:focus-visible,
     display: flex;
     justify-content: center;
     gap: 12px;
+    align-items: center;
+    flex-wrap: wrap; /* keep icons round by preventing overflow-driven flex shrinking */
     margin-bottom: 40px;
 }
 
@@ -264,6 +266,7 @@ a:focus-visible,
     font-size: 1.2rem;
     width: 45px;
     height: 45px;
+    flex: 0 0 45px; /* prevent flexbox from shrinking (keeps circle aspect) */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,6 +274,7 @@ a:focus-visible,
     background: rgba(241, 245, 249, 0.8);
     border: 1px solid rgba(226, 232, 240, 0.9);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1;
 }
 
 .social-links a:hover {
@@ -557,9 +561,37 @@ p {
     background-size: 100% 2px;
 }
 
+/* Google Scholar (publications subtitle): clear link color + underline */
+.section-subtitle a.scholar-link {
+    color: var(--accent-primary);
+    font-weight: 600;
+    text-decoration: none;
+    background-image: none;
+    background-size: auto;
+}
+
+.section-subtitle a.scholar-link:hover {
+    color: var(--accent-hover);
+    text-decoration: none;
+}
+
 strong {
     font-weight: 600;
     color: var(--text-primary);
+}
+
+/* Sidebar "Digit Robot" link styling */
+.institution a.institution-link {
+    color: var(--accent-primary);
+    font-weight: 600;
+    text-decoration: none;
+    background-image: none;
+    background-size: auto;
+}
+
+.institution a.institution-link:hover {
+    color: var(--accent-hover);
+    text-decoration: none;
 }
 
 /* Research Tags */
@@ -630,14 +662,15 @@ strong {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    min-width: 120px;
+    min-width: 176px; /* accommodate ~10% larger thumbnail */
     flex-shrink: 0;
 }
 
 .pub-image {
-    width: 120px;
-    height: 160px;
-    border-radius: 12px;
+    width: 158px; /* ~10% bigger (from 144px) */
+    height: 158px; /* keep thumbnails square */
+    aspect-ratio: 1 / 1;
+    border-radius: 8px; /* less round corners */
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -667,14 +700,15 @@ strong {
     gap: 5px;
     background: linear-gradient(135deg, #fbbf24, #f59e0b);
     color: white;
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.7rem; /* slightly smaller to stay on one line */
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
     box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 .pub-title {
@@ -704,6 +738,7 @@ strong {
     font-weight: 600;
     color: var(--text-primary);
     font-size: 0.95rem;
+    white-space: nowrap; /* keep venues like "ACM MobileHCI 2016" on one line */
 }
 
 .venue-type {
@@ -714,6 +749,7 @@ strong {
     border-radius: 12px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .pub-actions {
@@ -961,8 +997,8 @@ strong {
     }
 
     .pub-image {
-        width: 100px;
-        height: 133px;
+        width: 132px;
+        height: 132px; /* keep thumbnails square */
     }
 }
 
