@@ -1107,6 +1107,37 @@ strong {
         padding-top: 14px;
     }
 
+    /* Media Coverage: bounded height + scroll on narrow layouts (avoids endless page swipe). */
+    .sidebar-media-list {
+        max-height: min(40vh, 280px);
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        padding-right: 6px;
+        margin-right: -2px;
+        scrollbar-gutter: stable;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(148, 163, 184, 0.9) rgba(241, 245, 249, 0.95);
+    }
+
+    .sidebar-media-list::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .sidebar-media-list::-webkit-scrollbar-track {
+        background: rgba(241, 245, 249, 0.95);
+        border-radius: 999px;
+    }
+
+    .sidebar-media-list::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.9);
+        border-radius: 999px;
+    }
+
+    .sidebar-media-list::-webkit-scrollbar-thumb:hover {
+        background: rgba(100, 116, 139, 0.95);
+    }
+
     .nav-link {
         text-align: center;
         padding: 10px 14px;
