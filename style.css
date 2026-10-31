@@ -2240,9 +2240,11 @@ body::before {
 
 /* =====================================================================
    RADAR mode (.hero.scan-radar): a round radar beam rotates around the
-   hand skeleton. Set by a small script:
-     --ra          beam angle (deg, 0 = up, clockwise)
-     --rcx, --rcy  radar center inside the hero (px)
+   hero. A small script adds the beam (.radar-beam) and turns it ~30 times
+   a second; it pauses when off screen. The script also sets:
+     --rcx, --rcy  radar center inside the hero (px), on resize only
+     --ra          beam angle (deg, 0 = up, clockwise), only on the
+                   letters / boxes the beam is touching
    ===================================================================== */
 .hero.scan-radar {
     --ra: 0deg;
@@ -2267,22 +2269,29 @@ body::before {
     mask: radial-gradient(circle at var(--rcx) var(--rcy), #000 0, #000 35%, transparent 75%);
 }
 
-/* the beam: a bright green edge with a teal wedge fading behind it */
-.hero.scan-radar::after {
-    content: '';
+/* the beam: a bright green edge with a teal wedge fading behind it.
+   A square centered on the radar center, rotated by the script ~30 times a
+   second (transform only, so it is never repainted). Size and position are
+   set by the script. */
+.hero.scan-radar > .radar-beam {
     position: absolute;
-    inset: 0;
     z-index: 0;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
     pointer-events: none;
-    background: conic-gradient(from calc(var(--ra) - var(--radar-tail)) at var(--rcx) var(--rcy),
+    border-radius: 50%;
+    will-change: transform;
+    background: conic-gradient(from calc(-1 * var(--radar-tail)),
         rgba(20, 184, 166, 0) 0deg,
         rgba(20, 184, 166, 0.16) calc(var(--radar-tail) - 1.5deg),
         rgba(var(--scan-glow), 0.9) calc(var(--radar-tail) - 0.6deg),
         rgba(var(--scan-core), 1) var(--radar-tail),
         transparent var(--radar-tail),
         transparent 360deg);
-    -webkit-mask: radial-gradient(circle at var(--rcx) var(--rcy), #000 0, #000 30%, transparent 80%);
-    mask: radial-gradient(circle at var(--rcx) var(--rcy), #000 0, #000 30%, transparent 80%);
+    -webkit-mask: radial-gradient(circle closest-side, #000 0, #000 30%, transparent 80%);
+    mask: radial-gradient(circle closest-side, #000 0, #000 30%, transparent 80%);
 }
 
 /* text: letters light up exactly where the beam passes, fading in the wedge behind it.
@@ -2332,5 +2341,56 @@ body::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero.scan-radar::after { display: none; }
+    .hero.scan-radar > .radar-beam { display: none; }
 }
+
+/* cards inside the hero: no live blur. The beam moves behind them, so a blur
+   would be recomputed every frame (slow on weak graphics). A slightly more
+   solid fill keeps the same frosted look. */
+.hero .mini-card {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background:
+        radial-gradient(200px circle at var(--px) var(--py), rgba(255, 255, 255, 0.6), transparent 60%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.48) 100%);
+}
+
+
+/* =====================================================================
+   Performance: keep the page light on slow computers
+   ===================================================================== */
+
+/* No live blur behind the glass panels. The page background is a smooth,
+   soft gradient, so the blur was invisible, but it was recomputed every
+   time anything scrolled or animated over it. The glass look comes from
+   the fills, bright edges and shadows, which stay. */
+:root {
+    --glass-blur: none;
+    --glass-blur-small: none;
+}
+
+.pub-item {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+/* CV rainbow turn + glow breathing: driven 20 times a second by a small
+   script (sets --cv-angle and --cv-glow) instead of CSS animations that
+   the browser updates on every screen refresh */
+.cv-btn {
+    animation: none;
+}
+
+.cv-btn::before {
+    animation: none;
+    transform: scale(var(--cv-glow, 1));
+}
+
+/* Hand: no sway and no constant blinking (both kept the browser busy every
+   frame). The joints only light up when the radar beam passes over them. */
+.hand-skeleton,
+.hand-joints circle {
+    animation: none;
+}
+
+

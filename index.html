@@ -607,125 +607,183 @@
 </script>
 
 <script>
-  // RADAR mode: a round beam rotates around the hand skeleton. Letters and box
-  // edges light up exactly where the beam passes; hand joints blink as it sweeps.
+  // CV button: the rainbow edge turns slowly and the glow breathes.
+  // A timer updates it 20 times a second (not a CSS animation the browser checks
+  // on every screen refresh). Stops while the button is off screen or the tab is hidden.
+  (() => {
+    const btn = document.querySelector('.cv-btn');
+    if (!btn) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let timer = 0, onScreen = true, t = 0, prev = 0;
+    const tick = () => {
+      const now = performance.now();
+      t += Math.min(0.2, (now - prev) / 1000);          // seconds of motion (no jump after a pause)
+      prev = now;
+      btn.style.setProperty('--cv-angle', `${(t / 4 * 360 % 360).toFixed(1)}deg`);    // one turn every 4s
+      const p = (1 - Math.cos(t * Math.PI / 3.2)) / 2;                                 // breathe, 3.2s each way
+      btn.style.setProperty('--cv-glow', (0.96 + 0.10 * p).toFixed(3));
+    };
+    const update = () => {
+      const want = onScreen && !document.hidden;
+      if (want && !timer) { prev = performance.now(); tick(); timer = setInterval(tick, 50); }
+      else if (!want && timer) { clearInterval(timer); timer = 0; }
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => { onScreen = entries[0].isIntersecting; update(); }).observe(btn);
+    }
+    document.addEventListener('visibilitychange', update);
+    update();
+  })();
+</script>
+
+<script>
+  // RADAR mode: a beam rotates around the hero. Letters and box edges light up
+  // exactly where the beam passes; hand joints light up as it sweeps.
+  // Built to stay light on slow computers:
+  //  - one timer, ~30 updates a second (not every screen refresh)
+  //  - element positions are measured once (and again on resize), never per update
+  //  - only letters/boxes under the beam are touched; the beam itself is only rotated
+  //  - pauses when the hero is off screen or the tab is hidden
+  //  - if updates fall far behind (slow computer), letter effects switch off
   (() => {
     const hero = document.querySelector('.hero.scan-radar');
     if (!hero) return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const SPEED = 52.5;      // degrees per second (one turn every ~6.9s)
-    const TEXT_TAIL = 40;    // matches CSS --radar-text-tail
-    const EDGE_TAIL = 50;    // matches the box-edge wedge in CSS
-    const texts = Array.from(hero.querySelectorAll('.hero-title, .hero-subtitle, .mini-card-title, .mini-card-body li'));
-    const cards = Array.from(hero.querySelectorAll('.mini-card'));
-    const joints = Array.from(hero.querySelectorAll('.hand-joints circle'));
-    const vision = hero.querySelector('.hero-vision');
+    const SPEED = 52.5;                  // degrees per second (one turn every ~6.9s)
+    const FPS = 30;                      // updates per second
+    const TEXT_TAIL = 40;                // matches CSS --radar-text-tail
+    const EDGE_TAIL = 50;                // matches the box-edge wedge in CSS
 
-    let a = 0, last = 0, raf = 0, onScreen = true;
+    const vision = hero.querySelector('.hero-vision');
+    const wrap = (sel) => Array.from(hero.querySelectorAll(sel)).map((el) => ({ el, on: false }));
+    const texts = wrap('.hero-title, .hero-subtitle, .mini-card-title, .mini-card-body li');
+    const cards = wrap('.mini-card');
+    const joints = wrap('.hand-joints circle');
+
+    const beam = document.createElement('div');
+    beam.className = 'radar-beam';
+    beam.setAttribute('aria-hidden', 'true');
+    hero.append(beam);
 
     // angle of a point seen from the center: 0 = up, clockwise (same as CSS conic-gradient)
     const angleOf = (dx, dy) => (Math.atan2(dx, -dy) * 180 / Math.PI + 360) % 360;
     const inArc = (x, start, len) => ((x - start) % 360 + 360) % 360 <= len;
 
-    // radar center: data-radar-center="middle" (center of the card) or "hand"
-    const center = () => {
-      const hr = hero.getBoundingClientRect();
-      if (hero.dataset.radarCenter !== 'hand') {
-        return { x: hr.width / 2, y: hr.height / 2 };
-      }
-      if (vision && vision.offsetWidth) {
-        const v = vision.getBoundingClientRect();
-        return { x: v.left + v.width * 0.5 - hr.left, y: v.top + v.height * 0.62 - hr.top };
-      }
-      return { x: hr.width - 70, y: 60 };     // no hand on small screens: top-right corner
-    };
-
-    // does the beam wedge [a - tail, a] touch this rectangle (seen from the center)?
-    const touched = (r, cx, cy, tail) => {
-      const angs = [[r.left, r.top], [r.right, r.top], [r.left, r.bottom], [r.right, r.bottom]]
-        .map(([x, y]) => angleOf(x - cx, y - cy));
+    // angular range [lo, hi] a box covers, seen from the center
+    const arcOf = (l, t, r, b, cx, cy) => {
+      const angs = [[l, t], [r, t], [l, b], [r, b]].map(([x, y]) => angleOf(x - cx, y - cy));
       let lo = Math.min(...angs), hi = Math.max(...angs);
-      if (hi - lo > 180) {                      // rectangle straddles straight up: swap the arc
+      if (hi - lo > 180) {                      // box straddles straight up: swap the arc
         const neg = angs.map((g) => (g > 180 ? g - 360 : g));
         lo = Math.min(...neg); hi = Math.max(...neg);
       }
-      const start = a - tail - 2;
-      return inArc(lo, start, tail + 4) || inArc(hi, start, tail + 4) || inArc(a, lo, hi - lo);
+      return { lo, hi };
     };
 
-    let lastTick = 0;    // time of the last animation frame (for the watchdog below)
-    const frame = (now) => {
-      raf = 0;
-      lastTick = now;
-      const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
-      last = now;
-      a = (a + SPEED * dt) % 360;
-
+    // measure everything once (positions inside the hero don't change while it spins)
+    const measure = () => {
       const hr = hero.getBoundingClientRect();
-      const c = center();
-      const cx = hr.left + c.x, cy = hr.top + c.y;        // center in viewport coordinates
-      hero.style.setProperty('--ra', `${a.toFixed(2)}deg`);
-      hero.style.setProperty('--rcx', `${c.x.toFixed(1)}px`);
-      hero.style.setProperty('--rcy', `${c.y.toFixed(1)}px`);
-
-      texts.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        const on = touched(r, cx, cy, TEXT_TAIL);
-        el.classList.toggle('radar-text', on);
-        if (on) {
-          el.style.setProperty('--rx', `${(cx - r.left).toFixed(1)}px`);
-          el.style.setProperty('--ry', `${(cy - r.top).toFixed(1)}px`);
-          el.style.setProperty('--ra', `${a.toFixed(2)}deg`);
-        }
+      if (!hr.width) return;
+      let cx = hr.width / 2, cy = hr.height / 2;            // default: middle of the hero
+      if (hero.dataset.radarCenter === 'hand') {
+        if (vision && vision.offsetWidth) {
+          const v = vision.getBoundingClientRect();
+          cx = v.left + v.width * 0.5 - hr.left; cy = v.top + v.height * 0.62 - hr.top;
+        } else { cx = hr.width - 70; cy = 60; }             // no hand on small screens
+      }
+      const R = Math.hypot(Math.max(cx, hr.width - cx), Math.max(cy, hr.height - cy));
+      hero.style.setProperty('--rcx', `${cx.toFixed(1)}px`);
+      hero.style.setProperty('--rcy', `${cy.toFixed(1)}px`);
+      Object.assign(beam.style, {
+        left: `${(cx - R).toFixed(1)}px`, top: `${(cy - R).toFixed(1)}px`,
+        width: `${(2 * R).toFixed(1)}px`, height: `${(2 * R).toFixed(1)}px`,
       });
 
-      cards.forEach((card) => {
-        const r = card.getBoundingClientRect();
-        const on = touched(r, cx, cy, EDGE_TAIL);
-        card.classList.toggle('radar-edge', on);
-        if (on) {
-          card.style.setProperty('--rx', `${(cx - r.left + 1).toFixed(1)}px`);
-          card.style.setProperty('--ry', `${(cy - r.top + 1).toFixed(1)}px`);
-        }
+      const boxes = (list, pad) => list.forEach((it) => {
+        const r = it.el.getBoundingClientRect();
+        const l = r.left - hr.left, t = r.top - hr.top;
+        Object.assign(it, arcOf(l, t, l + r.width, t + r.height, cx, cy));
+        it.el.style.setProperty('--rx', `${(cx - l + pad).toFixed(1)}px`);
+        it.el.style.setProperty('--ry', `${(cy - t + pad).toFixed(1)}px`);
       });
-
-      joints.forEach((j) => {
-        const r = j.getBoundingClientRect();
-        if (!r.height) return;
-        const g = angleOf(r.left + r.width / 2 - cx, r.top + r.height / 2 - cy);
-        j.classList.toggle('is-hit', inArc(g, a - 25, 27));
+      boxes(texts, 0);
+      boxes(cards, 1);
+      joints.forEach((it) => {
+        const r = it.el.getBoundingClientRect();
+        it.g = r.height ? angleOf(r.left + r.width / 2 - hr.left - cx, r.top + r.height / 2 - hr.top - cy) : null;
       });
-
-      if (onScreen && !document.hidden) raf = requestAnimationFrame(frame);
-      else last = 0;
     };
 
-    const run = () => { if (!raf && onScreen && !document.hidden) raf = requestAnimationFrame(frame); };
+    // does the beam wedge [a - tail, a] touch this box?
+    const touched = (it, a, tail) => {
+      const start = a - tail - 2;
+      return inArc(it.lo, start, tail + 4) || inArc(it.hi, start, tail + 4) || inArc(a, it.lo, it.hi - it.lo);
+    };
+    const set = (it, on, cls) => {
+      if (on !== it.on) { it.on = on; it.el.classList.toggle(cls, on); }
+    };
+
+    let a = 0, lite = false;
+    const draw = () => {
+      beam.style.transform = `rotate(${a.toFixed(2)}deg)`;
+      if (lite) return;
+      const deg = `${a.toFixed(2)}deg`;
+      texts.forEach((it) => {
+        const on = touched(it, a, TEXT_TAIL);
+        set(it, on, 'radar-text');
+        if (on) it.el.style.setProperty('--ra', deg);
+      });
+      cards.forEach((it) => {
+        const on = touched(it, a, EDGE_TAIL);
+        set(it, on, 'radar-edge');
+        if (on) it.el.style.setProperty('--ra', deg);
+      });
+      joints.forEach((it) => set(it, it.g !== null && inArc(it.g, a - 25, 27), 'is-hit'));
+    };
+    const goLite = () => {
+      lite = true;
+      texts.forEach((it) => set(it, false, 'radar-text'));
+      cards.forEach((it) => set(it, false, 'radar-edge'));
+      joints.forEach((it) => set(it, false, 'is-hit'));
+    };
+
+    let timer = 0, onScreen = true, prev = 0, late = 0;
+    const tick = () => {
+      const now = performance.now();
+      const dt = (now - prev) / 1000;
+      prev = now;
+      a = (a + SPEED * Math.min(0.1, dt)) % 360;
+      draw();
+      // slow computer: updates keep arriving far too late -> letter effects off
+      if (!lite) {
+        late = dt > 3 / FPS ? late + 1 : Math.max(0, late - 1);
+        if (late > FPS * 2) goLite();
+      }
+    };
+    const update = () => {
+      const want = onScreen && !document.hidden;
+      if (want && !timer) { prev = performance.now(); timer = setInterval(tick, 1000 / FPS); }
+      else if (!want && timer) { clearInterval(timer); timer = 0; }
+    };
+
+    measure();
+    draw();
+    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(hero);
+    window.addEventListener('resize', measure, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    hero.addEventListener('transitionend', (e) => { if (e.target === hero) measure(); });
+    hero.addEventListener('animationend', (e) => { if (e.target === hero) measure(); });
+    setTimeout(measure, 1500);            // after the intro reveal settles
+
     if ('IntersectionObserver' in window) {
       new IntersectionObserver((entries) => {
         onScreen = entries[0].isIntersecting;
-        run();
+        update();
       }).observe(hero);
     }
-    document.addEventListener('visibilitychange', run);
-    // safety net: re-check visibility on scroll/resize/focus in case the observer missed a change
-    const recheck = () => {
-      const r = hero.getBoundingClientRect();
-      onScreen = r.bottom > 0 && r.top < window.innerHeight;
-      run();
-    };
-    ['scroll', 'resize', 'focus'].forEach((ev) => window.addEventListener(ev, recheck, { passive: true }));
-    setTimeout(recheck, 500);
-    // watchdog: if the animation stalls while the hero is visible, restart it
-    setInterval(() => {
-      if (onScreen && !document.hidden && performance.now() - lastTick > 600) {
-        if (raf) cancelAnimationFrame(raf);
-        raf = 0;
-        run();
-      }
-    }, 1000);
-    run();
+    document.addEventListener('visibilitychange', update);
+    update();
   })();
 </script>
 
