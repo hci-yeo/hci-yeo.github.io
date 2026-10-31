@@ -7,8 +7,9 @@
     <meta name="description" content="Hui-Shyong Yeo — Research Scientist. Research in HCI, wearable computing, and novel input devices. Selected publications and recent updates.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Orbitron:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,29 +22,43 @@
     <aside class="sidebar" aria-label="Sidebar">
         <div class="profile-container">
             <div class="profile-img-container">
-                <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=lnF_WWEAAAAJ" alt="Hui-Shyong Yeo" class="profile-img">
+                <img src="images/me.jpg" alt="Hui-Shyong Yeo" class="profile-img">
             </div>
             
             <div class="profile-text">
                 <h1 class="name">Hui-Shyong Yeo</h1>
                 <p class="role">Research Scientist</p>
-                <p class="institution">Digit Robot</p>
+                <p class="institution">
+                    <a class="institution-link" href="https://www.digit.com.cn/" target="_blank" rel="noopener noreferrer">
+                        Digit Robotics
+                    </a>
+                </p>
+                <a class="cv-btn" href="pdfs/Resume%202025%20Yeo%20Hui%20Shyong.pdf" target="_blank" rel="noopener noreferrer">
+                    <i class="far fa-file-pdf" aria-hidden="true"></i>
+                    CV
+                </a>
             </div>
             
             <div class="social-links">
                 <a href="https://scholar.google.com/citations?user=lnF_WWEAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
                     <i class="fas fa-graduation-cap"></i>
                 </a>
-                <a href="mailto:contact@example.com" aria-label="Email">
+                <a href="mailto:yeohuishyong@digit.com.cn" aria-label="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
                 <a href="https://www.youtube.com/@tcboy88" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                     <i class="fab fa-youtube"></i>
                 </a>
+                <a href="https://x.com/HCI_Research" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.facebook.com/HCI.Research" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
                 <a href="https://cn.linkedin.com/in/huishyongyeo" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://github.com/tcboy88" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <a href="https://github.com/hci-yeo" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
             </div>
@@ -52,33 +67,102 @@
                 <a href="#about" class="nav-link">About</a>
                 <a href="#publications" class="nav-link">Publications</a>
             </nav>
+
+            <section class="sidebar-news" aria-label="Recent news">
+                <h2 class="sidebar-news-title">Recent News</h2>
+                <ul class="sidebar-news-list">
+                    <li><span class="sidebar-news-year">2026-10</span> Published paper at BESC 2026</li>
+                    <li><span class="sidebar-news-year">2026-09</span> Published paper at MobileHCI 2026</li>
+                    <li><span class="sidebar-news-year">2026-03</span> Published paper at IEEE VR 2026</li>
+                    <li><span class="sidebar-news-year">2025-11</span> Joined Digit Robotics</li>
+                    <li><span class="sidebar-news-year">2024-10</span> Published paper at ISMAR 2024</li>
+                    <li><span class="sidebar-news-year">2023-09</span> Joined Huawei 2012 HMI Lab</li>
+                    <li><span class="sidebar-news-year">2023-05</span> Published paper at CHI 2023</li>
+                    <li><span class="sidebar-news-year">2021-04</span> Joined Huawei CBG UX</li>
+                </ul>
+            </section>
+
+            <section class="sidebar-media" aria-label="Media links">
+                <h2 class="sidebar-news-title">Media Coverage</h2>
+                <ul class="sidebar-media-list">
+                    <li>
+                        <a href="https://www.theverge.com/2019/1/4/18168083/google-project-soli-radar-hardware-applications-radarcat-solinteraction-university-of-st-andrews" target="_blank" rel="noopener noreferrer" class="sidebar-media-link">
+                            <span class="sidebar-media-source">The Verge</span>
+                            <span class="sidebar-media-text">RadarCat feature</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://gizmodo.com/students-hacked-a-chip-to-give-your-smartphone-a-sense-1787446499" target="_blank" rel="noopener noreferrer" class="sidebar-media-link">
+                            <span class="sidebar-media-source">Gizmodo</span>
+                            <span class="sidebar-media-text">RadarCat and smartphone touch</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://techcrunch.com/2017/03/17/tilt-gesture-keyboard-could-hold-promise-for-typing-in-vr/" target="_blank" rel="noopener noreferrer" class="sidebar-media-link">
+                            <span class="sidebar-media-source">TechCrunch</span>
+                            <span class="sidebar-media-text">Tilt keyboard in VR</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.androidheadlines.com/2016/08/watchmi-could-make-any-smartwatch-a-tad-smarter.html" target="_blank" rel="noopener noreferrer" class="sidebar-media-link">
+                            <span class="sidebar-media-source">Android Headlines</span>
+                            <span class="sidebar-media-text">WatchMI coverage</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.androidpolice.com/2016/08/13/watchmi-allows-pressure-sensitive-input-android-wear-really-useful/" target="_blank" rel="noopener noreferrer" class="sidebar-media-link">
+                            <span class="sidebar-media-source">Android Police</span>
+                            <span class="sidebar-media-text">WatchMI on Android Wear</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.slashgear.com/watchmi-adds-more-smartwatch-controls-without-adding-hardware-15451741/" target="_blank" rel="noopener noreferrer" class="sidebar-media-link">
+                            <span class="sidebar-media-source">SlashGear</span>
+                            <span class="sidebar-media-text">WatchMI without extra hardware</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
         </div>
     </aside>
 
     <!-- Main Content -->
     <main id="main" class="main-content">
         <div class="main-inner">
-            <header class="hero reveal" aria-label="Intro">
+            <header class="hero reveal scan-radar" data-radar-center="middle" aria-label="Intro">
+                <div class="hero-vision" aria-hidden="true">
+                    <svg viewBox="0 0 200 250" class="hand-skeleton">
+                        <g class="hand-bones"><line x1="100" y1="226" x2="70" y2="202"/><line x1="70" y1="202" x2="47" y2="178"/><line x1="47" y1="178" x2="34" y2="153"/><line x1="34" y1="153" x2="25" y2="131"/><line x1="100" y1="226" x2="78" y2="136"/><line x1="78" y1="136" x2="72" y2="101"/><line x1="72" y1="101" x2="69" y2="79"/><line x1="69" y1="79" x2="67" y2="58"/><line x1="78" y1="136" x2="100" y2="130"/><line x1="100" y1="130" x2="100" y2="92"/><line x1="100" y1="92" x2="100" y2="68"/><line x1="100" y1="68" x2="100" y2="46"/><line x1="100" y1="130" x2="121" y2="135"/><line x1="121" y1="135" x2="127" y2="100"/><line x1="127" y1="100" x2="130" y2="79"/><line x1="130" y1="79" x2="133" y2="60"/><line x1="121" y1="135" x2="140" y2="146"/><line x1="100" y1="226" x2="140" y2="146"/><line x1="140" y1="146" x2="150" y2="118"/><line x1="150" y1="118" x2="156" y2="101"/><line x1="156" y1="101" x2="161" y2="85"/></g>
+                        <g class="hand-joints"><circle cx="100" cy="226" r="3.4" style="--d:0.00s"/><circle cx="70" cy="202" r="3.4" style="--d:0.12s"/><circle cx="47" cy="178" r="3.4" style="--d:0.24s"/><circle cx="34" cy="153" r="3.4" style="--d:0.36s"/><circle cx="25" cy="131" r="4.2" style="--d:0.48s"/><circle cx="78" cy="136" r="3.4" style="--d:0.60s"/><circle cx="72" cy="101" r="3.4" style="--d:0.72s"/><circle cx="69" cy="79" r="3.4" style="--d:0.84s"/><circle cx="67" cy="58" r="4.2" style="--d:0.96s"/><circle cx="100" cy="130" r="3.4" style="--d:1.08s"/><circle cx="100" cy="92" r="3.4" style="--d:1.20s"/><circle cx="100" cy="68" r="3.4" style="--d:1.32s"/><circle cx="100" cy="46" r="4.2" style="--d:1.44s"/><circle cx="121" cy="135" r="3.4" style="--d:1.56s"/><circle cx="127" cy="100" r="3.4" style="--d:1.68s"/><circle cx="130" cy="79" r="3.4" style="--d:1.80s"/><circle cx="133" cy="60" r="4.2" style="--d:1.92s"/><circle cx="140" cy="146" r="3.4" style="--d:2.04s"/><circle cx="150" cy="118" r="3.4" style="--d:2.16s"/><circle cx="156" cy="101" r="3.4" style="--d:2.28s"/><circle cx="161" cy="85" r="4.2" style="--d:2.40s"/></g>
+                        <g class="hand-box">
+                            <path d="M10 30v-12h12M178 18h12v12M190 228v12h-12M22 240h-12v-12"/>
+                        </g>
+                        <text x="10" y="11" class="hand-label">HAND · 21 PTS · 0.98</text>
+                    </svg>
+                </div>
                 <div class="hero-topline">Human-Robot Interaction • Wearables • Sensing</div>
-                <h2 class="hero-title">Exploring the future of Natural Human-Robot Interaction</h2>
+                <h2 class="hero-title">Exploring the future of Natural <span class="nowrap">Human-Robot</span> Interaction</h2>
                 <p class="hero-subtitle">
-                    Research Scientist at <strong>Digit Robot</strong>. Previously at <strong>Huawei</strong>; researcher at <strong>KAIST</strong>. PhD at the <strong>University of St Andrews</strong>.
+                    Research Scientist at <strong>Digit Robotics</strong>. Previously at <strong>Huawei</strong>; researcher at <strong>KAIST</strong>. PhD at the <strong>University of St Andrews</strong>. I love tinkering with technology.
                 </p>
                 <div class="hero-cards" role="list" aria-label="Highlights">
                     <div class="mini-card" role="listitem">
                         <div class="mini-card-title"><i class="fas fa-award"></i> Highlight</div>
-                        <div class="mini-card-body">
-                            • Best Paper Award, CHI 2018<br>
-                            • Honorable Mention MobileHCI 2016, 2017<br>
-                            • Best Demo UIST 2016
-                        </div>
+                        <ul class="mini-card-body">
+                            <li>Best Paper Award, CHI 2018</li>
+                            <li>Honorable Mention Award MobileHCI 2016</li>
+                            <li>Honorable Mention Award MobileHCI 2017</li>
+                            <li>Best Demo Award UIST 2016</li>
+                        </ul>
                     </div>
                     <div class="mini-card" role="listitem">
-                        <div class="mini-card-title"><i class="fas fa-wand-magic-sparkles"></i> Focus</div>
-                        <div class="mini-card-body">
-                            • Low-cost sensing + ML for novel interactions<br>
-                            • Single-Handed Interaction Techniques
-                        </div>
+                        <div class="mini-card-title"><i class="fas fa-wand-magic-sparkles"></i> Research Topics</div>
+                        <ul class="mini-card-body">
+                            <li>Low-cost sensing + ML for novel interactions</li>
+                            <li>Single-Handed & Cross-Device Interaction</li>
+                            <li>Radar Sensing & Gesture Recognition</li>
+                            <li>Wearable & Ubiquitous Computing</li>
+                        </ul>
                     </div>
                 </div>
             </header>
@@ -88,17 +172,34 @@
             <h2 class="section-title">About Me</h2>
             <div class="content-block">
                 <p class="lead-text">
-                    I am a Research Scientist at <strong><a href="https://www.digit.com.cn/" target="_blank" rel="noopener noreferrer">Digit Robot</a></strong>, exploring the future of Natural Human-Robot Interaction.
+                    I am a Research Scientist at <strong><a href="https://www.digit.com.cn/" target="_blank" rel="noopener noreferrer">Digit Robotics</a></strong>, where I explore the future of Natural Human-Robot Interaction.
                 </p>
                 <p>
-                    Previously, I worked as a Research Scientist at <strong>Huawei</strong> through the <strong><a href="https://career.huawei.com/reccampportal/portal5/topminds.html" target="_blank" rel="noopener noreferrer">TopMinds</a></strong> program and conducted research at <a href="#">KAIST</a>.
+                    I received my PhD from the <a href="#">University of St Andrews</a> under the supervision of <strong>Prof. Aaron Quigley</strong>.
+                    Previously, I worked as a Principal Research Scientist at <strong>Huawei</strong> through the <strong><a href="https://career.huawei.com/reccampportal/portal5/topminds.html" target="_blank" rel="noopener noreferrer">TopMinds</a></strong> program and also conducted research at <a href="#">KAIST</a>. I also held internships at <strong>Microsoft Research Cambridge</strong>, <strong>Google</strong>, and <strong>Tokyo Tech</strong>.
                 </p>
                 <p>
-                    I received my PhD from the <a href="#">University of St Andrews</a> under the supervision of <strong>Prof. Aaron Quigley</strong>. I also completed internships at <strong>Microsoft Research Cambridge</strong>, <strong>Google</strong>, and <strong>Tokyo Tech</strong>.
+                    My research focuses on developing novel <strong>input devices and interaction techniques</strong> for next-generation computing systems. I work at the intersection of <strong>Human-Computer Interaction</strong>, <strong>Ubiquitous Computing</strong>, and <strong>Wearable Technologies</strong>, using machine learning and signal processing to unlock new capabilities from low-cost sensors. My work has appeared at premier venues including <strong>ACM CHI, UIST, UbiComp/IMWUT, MobileHCI, IEEE VR, TVCG, ISMAR, SIGGRAPH, and JNCA</strong>.
                 </p>
-                <p>
-                    My research focuses on developing novel <strong>input devices and interaction techniques</strong> for next-generation computing systems. I work at the intersection of <strong>Human-Computer Interaction</strong>, <strong>Ubiquitous Computing</strong>, and <strong>Wearable Technologies</strong>, utilizing machine learning and signal processing to unlock new capabilities from low-cost sensors. My work has been published in premier conferences including <strong>ACM CHI, UIST, UbiComp, MobileHCI, IEEE VR, ISMAR, and SIGGRAPH</strong>.
-                </p>
+            </div>
+        </section>
+
+        <section id="awards-gallery" class="section reveal">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Awards Gallery</h2>
+                    <p class="section-subtitle">Highlights from UIST and MobileHCI recognitions</p>
+                </div>
+            </div>
+            <div class="awards-gallery-grid">
+                <figure class="award-photo-card">
+                    <img src="images/uist_award.jpg" alt="UIST Best Demo award photo" class="award-photo">
+                    <figcaption>UIST 2016 Best Demo Award</figcaption>
+                </figure>
+                <figure class="award-photo-card">
+                    <img src="images/mobilehci_award.jpg" alt="MobileHCI Honorable Mention award photo" class="award-photo">
+                    <figcaption>MobileHCI 2016 Honorable Mention</figcaption>
+                </figure>
             </div>
         </section>
 
@@ -121,557 +222,16 @@
             <div class="section-header">
                 <div>
                     <h2 class="section-title">Selected Publications</h2>
-                    <p class="section-subtitle">Full publication list on <a href="https://scholar.google.com/citations?user=lnF_WWEAAAAJ&hl=en" target="_blank">Google Scholar</a></p>
+                    <p class="section-subtitle">Full publication list on <a href="https://scholar.google.com/citations?user=lnF_WWEAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="scholar-link">Google Scholar</a></p>
+                </div>
+                <div class="pub-sort" role="group" aria-label="Sort publications">
+                    <span class="pub-sort-label">Sort by</span>
+                    <button type="button" data-sort="author" aria-pressed="true">First author</button>
+                    <button type="button" data-sort="year" aria-pressed="false">Year</button>
                 </div>
             </div>
             
-            <div class="publication-list">
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/mnnCWtZXLlE/hqdefault.jpg" alt="GestureMark paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">GestureMark: Shortcut Input Technique using Smartwatch Touch Gestures for XR Glasses</h3>
-                        <div class="pub-authors">J Lee, M Baeck, <strong>HS Yeo</strong>, T Starner, W Woo</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">Augmented Humans 2024</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3652920.3652941" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=mnnCWtZXLlE" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/4MZu1leUUdw/hqdefault.jpg" alt="OmniSense paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">OmniSense: Exploring novel input sensing and interaction techniques on mobile device with an omni-directional camera</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, E Wu, D Kim, J Lee, H Kim, SY Oh, L Takagi, W Woo, H Koike, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2023</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3544548.3580747" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=4MZu1leUUdw" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/NSBMCAUh_2k/hqdefault.jpg" alt="MicroCam paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">MicroCam: Leveraging smartphone microscope camera for context-aware contact surface sensing</h3>
-                        <div class="pub-authors">Y Hu, <strong>HS Yeo</strong>, M Yuan, H Fan, DS Elvitigala, W Hu, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM IMWUT 2023</span>
-                            <span class="venue-type">Journal</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3610921" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=NSBMCAUh_2k" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/Qi-VnT5ZU4s/hqdefault.jpg" alt="JINSense paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">JINSense: Repurposing electrooculography sensors on smart glass for midair gesture and context sensing</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, J Lee, W Woo, H Koike, AJ Quigley, K Kunze</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2021 Extended Abstracts</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3411763.3451741" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=Qi-VnT5ZU4s" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/7IJUs3iqags/hqdefault.jpg" alt="Back-hand-pose paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Back-hand-pose: 3D hand pose estimation for a wrist-worn camera via dorsum deformation network</h3>
-                        <div class="pub-authors">E Wu, Y Yuan, <strong>HS Yeo</strong>, A Quigley, H Koike, KM Kitani</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM UIST 2020</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3379337.3415897" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=7IJUs3iqags" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/6OxQ84jryUU/hqdefault.jpg" alt="WATouCH paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">WATouCH: Enabling Direct Input on Non-touchscreen Using Smartwatch's Photoplethysmogram and IMU Sensor Fusion</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, W Feng, MX Huang</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2020</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3313831.3376198" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=6OxQ84jryUU" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/4ADgA5L23qE/hqdefault.jpg" alt="WristLens paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">WristLens: Enabling Single-Handed Surface Gesture Interaction for Wrist-Worn Devices Using Optical Motion Sensor</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, J Lee, A Bianchi, A Samboy, H Koike, W Woo, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">Augmented Humans 2020</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3384657.3384797" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=4ADgA5L23qE" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/PgqrmfctEqc/hqdefault.jpg" alt="Opisthenar paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Opisthenar: Hand poses and finger tapping recognition by observing back of hand using embedded wrist camera</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, E Wu, J Lee, A Quigley, H Koike</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM UIST 2019</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3332165.3347867" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=PgqrmfctEqc" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://via.placeholder.com/150x200.png?text=Rotoswype+Ring" alt="Rotoswype ring paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Rotoswype: Word-gesture typing using a ring</h3>
-                        <div class="pub-authors">A Gupta, C Ji, <strong>HS Yeo</strong>, A Quigley, D Vogel</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2019</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3290605.3300244" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/VE3o4NyXhdE/hqdefault.jpg" alt="Wrist paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Wrist: Watch-ring interaction and sensing technique for wrist gestures and macro-micro pointing</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, J Lee, H Kim, A Gupta, A Bianchi, D Vogel, H Koike, W Woo</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM MobileHCI 2019</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3338286.3340130" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=VE3o4NyXhdE" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/4Gl6iaVXZu0/hqdefault.jpg" alt="Project Zanzibar paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Project Zanzibar: A portable and flexible tangible interaction platform</h3>
-                        <div class="pub-authors">N Villar, D Cletheroe, G Saul, C Holz, T Regan, O Salandin, M Sra, <strong>HS Yeo</strong>, et al.</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2018</span>
-                            <span class="venue-type">Conference</span>
-                            <span class="award-ribbon">
-                                <i class="fas fa-award"></i> Best Paper
-                            </span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3173574.3174089" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=4Gl6iaVXZu0" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/zDAJ_0KIovc/hqdefault.jpg" alt="Radar sensing paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Exploring tangible interactions with radar sensing</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, R Minami, K Rodriguez, G Shaker, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM IMWUT 2018</span>
-                            <span class="venue-type">Journal</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3287078" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=zDAJ_0KIovc" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/JiNRvTVnwlU/hqdefault.jpg" alt="Adam paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Adam: Adapting multi-user interfaces for collaborative environments in real-time</h3>
-                        <div class="pub-authors">S Park, C Gebhardt, R Rädle, AM Feit, H Vrzakova, NR Dayama, <strong>HS Yeo</strong>, A Quigley, A Oulasvirta</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2018</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3173574.3173758" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=JiNRvTVnwlU" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/8BuXIlQ7_XM/hqdefault.jpg" alt="RotoSwype paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Investigating tilt-based gesture keyboard entry for single-handed text entry on large devices</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, XS Phang, SJ Castellucci, PO Kristensson, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2017</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/pdf/10.1145/3025453.3025784" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=8BuXIlQ7_XM" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/WK28OeaBszY/hqdefault.jpg" alt="TiTAN paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">TiTAN: Exploring midair text entry using freehand input</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, XS Phang, T Ha, W Woo, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2017 Extended Abstracts</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3027063.3053228" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=WK28OeaBszY" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/B6sn2vRJXJ4/hqdefault.jpg" alt="RadarCat paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">RadarCat: Radar categorization for input & interaction</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, G Flamich, P Schrempf, D Harris-Birtill, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM UIST 2016</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/pdf/10.1145/2984511.2984515" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=B6sn2vRJXJ4" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/ZI5mod9MCh4/hqdefault.jpg" alt="Mirror Mirror paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Mirror mirror: An on-body t-shirt design system</h3>
-                        <div class="pub-authors">D Saakes, <strong>HS Yeo</strong>, ST Noh, G Han, W Woo</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2016</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/2858036.2858282" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=ZI5mod9MCh4" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/74roE_cyafk/hqdefault.jpg" alt="WatchMI paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">WatchMI: pressure touch, twist and pan gesture input on unmodified smartwatches</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, J Lee, A Bianchi, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM MobileHCI 2016</span>
-                            <span class="venue-type">Conference</span>
-                            <span class="award-ribbon">
-                                <i class="fas fa-award"></i> Honorable Mention
-                            </span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/2935334.2935375" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=74roE_cyafk" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/3Zc5Yi5C5vU/hqdefault.jpg" alt="Sidetap & slingshot gestures paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Sidetap &amp; slingshot gestures on unmodified smartwatches</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, J Lee, A Bianchi, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM UIST 2016</span>
-                            <span class="venue-type">Demo</span>
-                            <span class="award-ribbon">
-                                <i class="fas fa-award"></i> Best Demo Award
-                            </span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://www.youtube.com/watch?v=3Zc5Yi5C5vU" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/xML2S6bvMwI/hqdefault.jpg" alt="Hand tracking paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Hand tracking and gesture recognition system for human-robot interaction using low-cost hardware</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, BG Lee, H Lim</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">Multimedia Tools and Applications</span>
-                            <span class="venue-type">Journal</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://link.springer.com/article/10.1007/s11042-013-1501-1" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=xML2S6bvMwI" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://via.placeholder.com/150x200.png?text=Augmented+Learning" alt="Augmented learning paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Augmented learning for sports using wearable head-worn and wrist-worn devices</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, H Koike, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">IEEE VR 2019</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://ieeexplore.ieee.org/document/8798158" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://via.placeholder.com/150x200.png?text=Counterpoint" alt="Counterpoint paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Counterpoint: exploring mixed-scale gesture interaction for AR applications</h3>
-                        <div class="pub-authors">B Ens, A Quigley, <strong>HS Yeo</strong>, P Irani, T Piumsomboon, M Billinghurst</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM CHI 2018 Extended Abstracts</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/pdf/10.1145/3170427.3188624" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/IQ_LkPM_GHs/hqdefault.jpg" alt="Itchy nose paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Itchy nose: Discreet gesture interaction using EOG sensors in smart eyewear</h3>
-                        <div class="pub-authors">J Lee, <strong>HS Yeo</strong>, M Dhuliawala, J Akano, J Shimizu, T Starner, A Quigley, H Koike</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM ISWC 2017</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/pdf/10.1145/3123024.3123033" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=IQ_LkPM_GHs" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/NxjbOVxcNuM/hqdefault.jpg" alt="Specam paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Specam: Sensing surface color and material with the front-facing camera of a mobile device</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, J Lee, A Bianchi, D Harris-Birtill, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM MobileHCI 2017</span>
-                            <span class="venue-type">Conference</span>
-                            <span class="award-ribbon">
-                                <i class="fas fa-award"></i> Honorable Mention
-                            </span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/10.1145/3098279.3098541" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=NxjbOVxcNuM" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://via.placeholder.com/150x200.png?text=Radar+HCI" alt="Radar HCI paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Radar sensing in human-robot interaction</h3>                        <div class="pub-authors"><strong>HS Yeo</strong>, A Quigley</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ACM interactions, 2017</span>
-                            <span class="venue-type">Magazine</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://dl.acm.org/doi/pdf/10.1145/3152881" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://img.youtube.com/vi/ENWd0HZ0YZo/hqdefault.jpg" alt="HMD Mixed Reality paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">An HMD-based Mixed Reality System for Avatar-Mediated Remote Collaboration with Bare-hand Interaction</h3>
-                        <div class="pub-authors">S Noh, <strong>HS Yeo</strong>, W Woo, M Imura</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">ICAT-EGVE 2015</span>
-                            <span class="venue-type">Conference</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://ieeexplore.ieee.org/document/7344836" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                            <a href="https://www.youtube.com/watch?v=ENWd0HZ0YZo" target="_blank" rel="noopener noreferrer" class="action-btn"><i class="fas fa-play"></i> Video</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-meta">
-                        <div class="pub-image">
-                            <img src="https://via.placeholder.com/150x200.png?text=Client+Storage" alt="Client storage paper thumbnail">
-                        </div>
-                    </div>
-                    <div class="pub-details">
-                        <h3 class="pub-title">Leveraging client-side storage techniques for enhanced use of multiple consumer cloud storage services on resource-constrained mobile devices</h3>
-                        <div class="pub-authors"><strong>HS Yeo</strong>, XS Phang, HJ Lee, H Lim</div>
-                        <div class="pub-venue">
-                            <span class="venue-name">Journal of Network and Computer Applications, 2014</span>
-                            <span class="venue-type">Journal</span>
-                        </div>
-                        <div class="pub-actions">
-                            <a href="https://www.sciencedirect.com/science/article/abs/pii/S1084804514000897" target="_blank" class="action-btn primary"><i class="far fa-file-pdf"></i> PDF</a>
-                        </div>
-                    </div>
-                </article>
-
+            <div class="publication-list" aria-busy="true" aria-label="Publications list">
             </div>
         </section>
 
@@ -713,6 +273,7 @@
     </main>
 </div>
 
+<script src="publications.js"></script>
 <script>
   // Smooth "designer" scrolling: progress bar, section reveal, and active nav highlight.
   (() => {
@@ -728,61 +289,139 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // Use YouTube icon for all "Video" action buttons.
-    // (Avoids having to manually update icon markup for every publication card.)
-    document.querySelectorAll('.action-btn').forEach((a) => {
-      const txt = a && typeof a.textContent === 'string' ? a.textContent.trim() : '';
-      if (!txt.endsWith('Video')) return;
-      a.classList.add('video-btn');
-      const icon = a.querySelector && a.querySelector('i');
-      if (!icon) return;
-      icon.classList.remove('fa-play');
-      icon.classList.remove('fas');
-      icon.classList.add('fab');
-      icon.classList.add('fa-youtube');
-    });
-
-    // Sort publication cards: papers with "HS Yeo" as the first author first (stable).
-    const publicationList = document.querySelector('.publication-list');
-    if (publicationList) {
-      const pubItems = Array.from(publicationList.querySelectorAll('.pub-item'));
-      const decorated = pubItems.map((el, idx) => {
-        const authorsEl = el.querySelector('.pub-authors');
-        const authorsText = (authorsEl && authorsEl.textContent ? authorsEl.textContent : '').trim();
-        const firstAuthorIsHSYeo = authorsText.startsWith('HS Yeo');
-        return { el, idx, key: firstAuthorIsHSYeo ? 0 : 1 };
-      });
-
-      // Keep original order within each group by sorting with the original index as a tie-breaker.
-      decorated.sort((a, b) => (a.key - b.key) || (a.idx - b.idx));
-      decorated.forEach(({ el }) => publicationList.appendChild(el));
-    }
-
     // Cursor spotlight (designer feel). Fine-pointer only, respects reduced motion.
     const main = document.querySelector('.main-content');
     const finePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
     const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (main && finePointer && !reducedMotion) {
-      let mx = window.innerWidth * 0.5;
-      let my = window.innerHeight * 0.22;
+      // Cursor position in the window. The glow is drawn inside .main-content,
+      // so convert to that element's own coordinates (it sits right of the
+      // sidebar and scrolls with the page).
+      let cx = window.innerWidth * 0.5;
+      let cy = window.innerHeight * 0.22;
       let raf = 0;
 
       const apply = () => {
         raf = 0;
-        main.style.setProperty('--mx', `${mx}px`);
-        main.style.setProperty('--my', `${my}px`);
+        const r = main.getBoundingClientRect();
+        main.style.setProperty('--mx', `${cx - r.left}px`);
+        main.style.setProperty('--my', `${cy - r.top}px`);
+      };
+      const schedule = () => {
+        if (!raf) raf = window.requestAnimationFrame(apply);
       };
 
       window.addEventListener(
         'mousemove',
         (e) => {
-          mx = e.clientX;
-          my = e.clientY;
-          if (!raf) raf = window.requestAnimationFrame(apply);
+          cx = e.clientX;
+          cy = e.clientY;
+          schedule();
         },
         { passive: true }
       );
+      // Keep the glow under the cursor while scrolling.
+      window.addEventListener('scroll', schedule, { passive: true });
       apply();
+
+      // Targeting reticle: a dot on the cursor plus corner brackets that
+      // trail behind it and lock onto links and buttons.
+      const dot = document.createElement('div');
+      dot.className = 'cursor-dot';
+      const frame = document.createElement('div');
+      frame.className = 'cursor-frame';
+      const label = document.createElement('div');
+      label.className = 'cursor-label';
+      label.setAttribute('aria-hidden', 'true');
+      dot.setAttribute('aria-hidden', 'true');
+      frame.setAttribute('aria-hidden', 'true');
+      document.body.append(frame, label, dot);
+
+      const SIZE = 28;        // bracket box size when free
+      const PAD = 6;          // gap around a locked element
+      const interactive = 'a, button, [role="button"], .pub-image';
+      let lockEl = null;
+      // Short, readout-style name for the locked element
+      const targetName = (el) => {
+        let name = el.getAttribute('aria-label') || el.textContent || '';
+        if (!name.trim() && el.querySelector('img')) name = 'image';
+        name = name.replace(/\s+/g, ' ').trim().toUpperCase();
+        return name.length > 22 ? `${name.slice(0, 21)}…` : (name || 'LINK');
+      };
+      const cur = { x: cx - SIZE / 2, y: cy - SIZE / 2, w: SIZE, h: SIZE };
+      let frameRaf = 0;
+
+      const targetBox = () => {
+        if (lockEl && lockEl.isConnected) {
+          const r = lockEl.getBoundingClientRect();
+          return { x: r.left - PAD, y: r.top - PAD, w: r.width + PAD * 2, h: r.height + PAD * 2 };
+        }
+        return { x: cx - SIZE / 2, y: cy - SIZE / 2, w: SIZE, h: SIZE };
+      };
+
+      const step = () => {
+        const t = targetBox();
+        const k = 0.25;
+        cur.x += (t.x - cur.x) * k;
+        cur.y += (t.y - cur.y) * k;
+        cur.w += (t.w - cur.w) * k;
+        cur.h += (t.h - cur.h) * k;
+        frame.style.transform = `translate3d(${cur.x}px, ${cur.y}px, 0)`;
+        frame.style.width = `${cur.w}px`;
+        frame.style.height = `${cur.h}px`;
+        label.style.transform = `translate3d(${cur.x}px, ${cur.y - 20}px, 0)`;
+        const moving = Math.abs(t.x - cur.x) + Math.abs(t.y - cur.y) +
+                       Math.abs(t.w - cur.w) + Math.abs(t.h - cur.h) > 0.4;
+        frameRaf = moving ? window.requestAnimationFrame(step) : 0;
+      };
+      const kick = () => { if (!frameRaf) frameRaf = window.requestAnimationFrame(step); };
+
+      window.addEventListener('mousemove', (e) => {
+        dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+        dot.classList.add('is-visible');
+        frame.classList.add('is-visible');
+        const next = e.target.closest(interactive);
+        if (next !== lockEl) {
+          lockEl = next;
+          label.textContent = lockEl ? `TARGET · ${targetName(lockEl)}` : '';
+        }
+        frame.classList.toggle('is-locked', !!lockEl);
+        label.classList.toggle('is-visible', !!lockEl);
+        kick();
+      }, { passive: true });
+      window.addEventListener('scroll', kick, { passive: true });
+      document.addEventListener('mouseleave', () => {
+        dot.classList.remove('is-visible');
+        frame.classList.remove('is-visible');
+        label.classList.remove('is-visible');
+      });
+      window.addEventListener('mousedown', () => {
+        frame.classList.remove('is-down');
+        void frame.offsetWidth; // restart the pulse
+        frame.classList.add('is-down');
+      });
+
+      // Glass panels catch a soft shine where the cursor is.
+      const shineTargets = '.sidebar, .hero, .pub-item, .mini-card';
+      let lit = [];
+      window.addEventListener('mousemove', (e) => {
+        const now = [];
+        let el = e.target.closest(shineTargets);
+        while (el) {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--px', `${e.clientX - r.left}px`);
+          el.style.setProperty('--py', `${e.clientY - r.top}px`);
+          now.push(el);
+          el = el.parentElement && el.parentElement.closest(shineTargets);
+        }
+        lit.forEach((prev) => {
+          if (!now.includes(prev)) {
+            prev.style.removeProperty('--px');
+            prev.style.removeProperty('--py');
+          }
+        });
+        lit = now;
+      }, { passive: true });
     }
 
     const navLinks = Array.from(document.querySelectorAll('.sidebar-nav .nav-link'));
@@ -825,6 +464,12 @@
 
     // Reveal animations
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
+    // Content already on screen at load shows right away, with no fade.
+    revealEls.forEach((el) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('reveal-instant', 'is-visible');
+      }
+    });
     const revealIO = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -836,7 +481,251 @@
       },
       { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
     );
-    revealEls.forEach((el) => revealIO.observe(el));
+    revealEls
+      .filter((el) => !el.classList.contains('is-visible'))
+      .forEach((el) => revealIO.observe(el));
+  })();
+</script>
+
+
+<script>
+  // LiDAR scan across the hero at a constant speed: down, then back up.
+  // Letters light up exactly at the line and return to normal a little behind it.
+  (() => {
+    const hero = document.querySelector('.hero.scan-lidar');
+    if (!hero) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const texts = Array.from(hero.querySelectorAll('.hero-title, .hero-subtitle, .mini-card-title, .mini-card-body li'));
+    const cards = Array.from(hero.querySelectorAll('.mini-card'));
+    const joints = Array.from(hero.querySelectorAll('.hand-joints circle'));
+
+    const SPEED = 130;   // px per second, constant
+    const TRAIL = 8 + 96; // lit band + fading tail behind the line (matches CSS --trail + --tail)
+    const PAUSE = 800;   // ms between passes
+    const FADE = 40;     // px over which the line (and dots) fade in/out at the edges
+
+
+    let y = -10;          // line position inside the hero (px)
+    let dir = 1;          // 1 = moving down, -1 = moving back up
+    let pauseUntil = 0;
+    let last = 0;
+    let raf = 0;
+    let onScreen = true;
+    let lastTick = 0;    // time of the last animation frame (for the watchdog below)
+    const frame = (now) => {
+      raf = 0;
+      lastTick = now;
+      const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
+      last = now;
+      const h = hero.clientHeight;
+
+      if (now < pauseUntil) {
+        hero.style.setProperty('--scan-o', '0');
+      } else {
+        y += dir * SPEED * dt;
+        if (dir === 1 && y >= h - 2) {          // reached the bottom: turn around
+          y = h - 2;
+          dir = -1;
+        } else if (dir === -1 && y <= -10) {    // back at the top: pause, then go down again
+          y = -10;
+          dir = 1;
+          pauseUntil = now + PAUSE;
+        }
+      }
+      hero.classList.toggle('scan-up', dir === -1);
+
+      const visible = now >= pauseUntil && y > -10;
+      // fade in/out only at the top; the line turns around at the bottom without fading
+      const o = visible ? Math.max(0, Math.min(1, (y + 10) / FADE)) : 0;
+      hero.style.setProperty('--scan-o', o.toFixed(3));
+      hero.style.setProperty('--scan-y', visible ? `${y.toFixed(1)}px` : '-200px');
+
+
+      const heroTop = hero.getBoundingClientRect().top;
+      const lineY = heroTop + y;    // in viewport coordinates
+
+      // text: a lit band travels through the letters with the line
+      // (trailing above it going down, below it going up)
+      texts.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const on = visible && (dir === 1
+          ? lineY >= r.top - 1 && lineY <= r.bottom + TRAIL + 2
+          : lineY <= r.bottom + 1 && lineY >= r.top - TRAIL - 2);
+        el.classList.toggle('scan-text', on);
+        if (on) el.style.setProperty('--sy', `${(lineY - r.top).toFixed(1)}px`);
+        else el.style.removeProperty('--sy');
+      });
+
+      // boxes: only the edge at the line lights up, with a fading tail behind it
+      cards.forEach((card) => {
+        const r = card.getBoundingClientRect();
+        const EDGE = 8 + 70;   // matches CSS --edge-trail + --edge-tail
+        const on = visible && (dir === 1
+          ? lineY >= r.top - 1 && lineY <= r.bottom + EDGE + 2
+          : lineY <= r.bottom + 1 && lineY >= r.top - EDGE - 2);
+        card.classList.toggle('is-scanned', on);
+        if (on) card.style.setProperty('--cy', `${(lineY - r.top + 1).toFixed(1)}px`);
+      });
+
+      // hand: joints near the line light up
+      joints.forEach((j) => {
+        const r = j.getBoundingClientRect();
+        j.classList.toggle('is-hit', visible && r.height > 0 && Math.abs(lineY - (r.top + r.height / 2)) < 14);
+      });
+
+      if (onScreen && !document.hidden) raf = requestAnimationFrame(frame);
+      else last = 0;
+    };
+
+    const run = () => { if (!raf && onScreen && !document.hidden) raf = requestAnimationFrame(frame); };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        onScreen = entries[0].isIntersecting;
+        run();
+      }).observe(hero);
+    }
+    document.addEventListener('visibilitychange', run);
+    // safety net: re-check visibility on scroll/resize/focus in case the observer missed a change
+    const recheck = () => {
+      const r = hero.getBoundingClientRect();
+      onScreen = r.bottom > 0 && r.top < window.innerHeight;
+      run();
+    };
+    ['scroll', 'resize', 'focus'].forEach((ev) => window.addEventListener(ev, recheck, { passive: true }));
+    setTimeout(recheck, 500);
+    // watchdog: if the animation stalls while the hero is visible, restart it
+    setInterval(() => {
+      if (onScreen && !document.hidden && performance.now() - lastTick > 600) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+        run();
+      }
+    }, 1000);
+    run();
+  })();
+</script>
+
+<script>
+  // RADAR mode: a round beam rotates around the hand skeleton. Letters and box
+  // edges light up exactly where the beam passes; hand joints blink as it sweeps.
+  (() => {
+    const hero = document.querySelector('.hero.scan-radar');
+    if (!hero) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const SPEED = 52.5;      // degrees per second (one turn every ~6.9s)
+    const TEXT_TAIL = 40;    // matches CSS --radar-text-tail
+    const EDGE_TAIL = 50;    // matches the box-edge wedge in CSS
+    const texts = Array.from(hero.querySelectorAll('.hero-title, .hero-subtitle, .mini-card-title, .mini-card-body li'));
+    const cards = Array.from(hero.querySelectorAll('.mini-card'));
+    const joints = Array.from(hero.querySelectorAll('.hand-joints circle'));
+    const vision = hero.querySelector('.hero-vision');
+
+    let a = 0, last = 0, raf = 0, onScreen = true;
+
+    // angle of a point seen from the center: 0 = up, clockwise (same as CSS conic-gradient)
+    const angleOf = (dx, dy) => (Math.atan2(dx, -dy) * 180 / Math.PI + 360) % 360;
+    const inArc = (x, start, len) => ((x - start) % 360 + 360) % 360 <= len;
+
+    // radar center: data-radar-center="middle" (center of the card) or "hand"
+    const center = () => {
+      const hr = hero.getBoundingClientRect();
+      if (hero.dataset.radarCenter !== 'hand') {
+        return { x: hr.width / 2, y: hr.height / 2 };
+      }
+      if (vision && vision.offsetWidth) {
+        const v = vision.getBoundingClientRect();
+        return { x: v.left + v.width * 0.5 - hr.left, y: v.top + v.height * 0.62 - hr.top };
+      }
+      return { x: hr.width - 70, y: 60 };     // no hand on small screens: top-right corner
+    };
+
+    // does the beam wedge [a - tail, a] touch this rectangle (seen from the center)?
+    const touched = (r, cx, cy, tail) => {
+      const angs = [[r.left, r.top], [r.right, r.top], [r.left, r.bottom], [r.right, r.bottom]]
+        .map(([x, y]) => angleOf(x - cx, y - cy));
+      let lo = Math.min(...angs), hi = Math.max(...angs);
+      if (hi - lo > 180) {                      // rectangle straddles straight up: swap the arc
+        const neg = angs.map((g) => (g > 180 ? g - 360 : g));
+        lo = Math.min(...neg); hi = Math.max(...neg);
+      }
+      const start = a - tail - 2;
+      return inArc(lo, start, tail + 4) || inArc(hi, start, tail + 4) || inArc(a, lo, hi - lo);
+    };
+
+    let lastTick = 0;    // time of the last animation frame (for the watchdog below)
+    const frame = (now) => {
+      raf = 0;
+      lastTick = now;
+      const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
+      last = now;
+      a = (a + SPEED * dt) % 360;
+
+      const hr = hero.getBoundingClientRect();
+      const c = center();
+      const cx = hr.left + c.x, cy = hr.top + c.y;        // center in viewport coordinates
+      hero.style.setProperty('--ra', `${a.toFixed(2)}deg`);
+      hero.style.setProperty('--rcx', `${c.x.toFixed(1)}px`);
+      hero.style.setProperty('--rcy', `${c.y.toFixed(1)}px`);
+
+      texts.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const on = touched(r, cx, cy, TEXT_TAIL);
+        el.classList.toggle('radar-text', on);
+        if (on) {
+          el.style.setProperty('--rx', `${(cx - r.left).toFixed(1)}px`);
+          el.style.setProperty('--ry', `${(cy - r.top).toFixed(1)}px`);
+          el.style.setProperty('--ra', `${a.toFixed(2)}deg`);
+        }
+      });
+
+      cards.forEach((card) => {
+        const r = card.getBoundingClientRect();
+        const on = touched(r, cx, cy, EDGE_TAIL);
+        card.classList.toggle('radar-edge', on);
+        if (on) {
+          card.style.setProperty('--rx', `${(cx - r.left + 1).toFixed(1)}px`);
+          card.style.setProperty('--ry', `${(cy - r.top + 1).toFixed(1)}px`);
+        }
+      });
+
+      joints.forEach((j) => {
+        const r = j.getBoundingClientRect();
+        if (!r.height) return;
+        const g = angleOf(r.left + r.width / 2 - cx, r.top + r.height / 2 - cy);
+        j.classList.toggle('is-hit', inArc(g, a - 25, 27));
+      });
+
+      if (onScreen && !document.hidden) raf = requestAnimationFrame(frame);
+      else last = 0;
+    };
+
+    const run = () => { if (!raf && onScreen && !document.hidden) raf = requestAnimationFrame(frame); };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        onScreen = entries[0].isIntersecting;
+        run();
+      }).observe(hero);
+    }
+    document.addEventListener('visibilitychange', run);
+    // safety net: re-check visibility on scroll/resize/focus in case the observer missed a change
+    const recheck = () => {
+      const r = hero.getBoundingClientRect();
+      onScreen = r.bottom > 0 && r.top < window.innerHeight;
+      run();
+    };
+    ['scroll', 'resize', 'focus'].forEach((ev) => window.addEventListener(ev, recheck, { passive: true }));
+    setTimeout(recheck, 500);
+    // watchdog: if the animation stalls while the hero is visible, restart it
+    setInterval(() => {
+      if (onScreen && !document.hidden && performance.now() - lastTick > 600) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+        run();
+      }
+    }, 1000);
+    run();
   })();
 </script>
 

@@ -5,7 +5,7 @@
     --bg-sidebar: #ffffff;
     --text-primary: #111827;
     --text-secondary: #4b5563;
-    --text-tertiary: #9ca3af;
+    --text-tertiary: #5b6779; /* darker so small gray text stays readable */
     --accent-primary: #0d9488;
     --accent-hover: #0f766e;
     --accent-light: #ccfbf1;
@@ -22,15 +22,17 @@
     --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.12);
     
     /* Typography */
-    --font-heading: 'Crimson Pro', serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Orbitron', 'Exo 2', sans-serif;
+    --font-body: 'Exo 2', sans-serif;
+    --font-display: 'Orbitron', 'Exo 2', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
     /* Layout scale */
     --radius-lg: 24px;
     --radius-md: 16px;
     --radius-sm: 12px;
     --content-max: 980px;
-    --gutter: 90px;
+    --gutter: 45px;
 }
 
 * {
@@ -121,6 +123,10 @@ body {
     transform: translateY(0);
 }
 
+.reveal.reveal-instant {
+    transition: none;
+}
+
 /* Skip link */
 .skip-link {
     position: absolute;
@@ -180,10 +186,10 @@ a:focus-visible,
     flex-shrink: 0;
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow: visible;
 }
 
 .profile-container {
@@ -228,12 +234,12 @@ a:focus-visible,
 }
 
 .name {
-    font-family: var(--font-heading);
-    font-size: 2.2rem;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 10px;
     color: var(--text-primary);
-    letter-spacing: -0.5px;
+    letter-spacing: -0.03em;
 }
 
 .role {
@@ -249,36 +255,158 @@ a:focus-visible,
     font-size: 1.1rem;
     font-weight: 500;
     color: var(--text-secondary);
-    margin-bottom: 35px;
+    margin-bottom: 12px;
+}
+
+.cv-btn {
+    --cv-angle: 0deg;
+    /* smooth, evenly balanced rainbow that loops without a seam */
+    --cv-rainbow: conic-gradient(from var(--cv-angle),
+        #ff7eb3, #ff9f6b, #ffd36b, #7ee8a5, #5fd4f5, #8b9cff, #c58bff, #ff7eb3);
+    --cv-fill: linear-gradient(#f4fdfb, #e3f8f4); /* soft mint */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: #0f766e;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 28px;
+    position: relative;
+    isolation: isolate; /* keeps the layers below in order */
+    animation: cv-spin 8s linear infinite;
+    transition: transform 0.2s ease;
+}
+
+/* Back layer: soft rainbow glow that gently breathes */
+.cv-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    z-index: -2;
+    border-radius: inherit;
+    background: var(--cv-rainbow);
+    filter: blur(12px);
+    opacity: 0.45;
+    animation: cv-breathe 3.2s ease-in-out infinite alternate;
+    transition: opacity 0.3s ease;
+}
+
+/* Front layer: fill, a fine 2px rainbow edge, a glassy top highlight,
+   and a shine that sweeps across on hover */
+.cv-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    background:
+        linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.8) 50%, transparent 65%) padding-box,
+        var(--cv-fill) padding-box,
+        var(--cv-rainbow) border-box;
+    background-size: 250% 100%, auto, auto;
+    background-position: 150% 0, 0 0, 0 0;
+    background-repeat: no-repeat;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 2px rgba(15, 118, 110, 0.06);
+}
+
+.cv-btn:hover {
+    color: #115e59;
+    transform: translateY(-1px);
+}
+
+.cv-btn:hover::before {
+    opacity: 0.85;
+}
+
+.cv-btn:hover::after {
+    animation: cv-sheen 0.9s ease forwards;
+}
+
+/* Lets the rainbow slowly rotate around the edge */
+@property --cv-angle {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+}
+
+@keyframes cv-spin {
+    to { --cv-angle: 360deg; }
+}
+
+@keyframes cv-breathe {
+    from { transform: scale(0.96); }
+    to   { transform: scale(1.06); }
+}
+
+@keyframes cv-sheen {
+    to { background-position: -50% 0, 0 0, 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cv-btn,
+    .cv-btn::before,
+    .cv-btn:hover::after { animation: none; }
 }
 
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 5px;
+    align-items: center;
+    flex-wrap: wrap; /* keep icons round by preventing overflow-driven flex shrinking */
     margin-bottom: 40px;
 }
 
 .social-links a {
-    color: var(--text-secondary);
-    font-size: 1.2rem;
-    width: 45px;
-    height: 45px;
+    --brand: var(--accent-primary);
+    color: var(--brand);
+    font-size: 0.88rem;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px; /* prevent flexbox from shrinking (keeps circle aspect) */
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: rgba(241, 245, 249, 0.8);
-    border: 1px solid rgba(226, 232, 240, 0.9);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    transition: transform 0.25s ease, box-shadow 0.25s ease,
+                background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    line-height: 1;
 }
 
+/* Brand color for each social button */
+.social-links a[aria-label="Google Scholar"] { --brand: #4285f4; }
+.social-links a[aria-label="Email"]          { --brand: #0d9488; }
+.social-links a[aria-label="YouTube"]        { --brand: #ff0000; }
+.social-links a[aria-label="X (Twitter)"]    { --brand: #1da1f2; }
+.social-links a[aria-label="Facebook"]       { --brand: #1877f2; }
+.social-links a[aria-label="LinkedIn"]       { --brand: #0a66c2; }
+.social-links a[aria-label="GitHub"]         { --brand: #24292f; }
+
 .social-links a:hover {
-    color: var(--bg-sidebar);
-    background: var(--accent-primary);
-    border-color: var(--accent-primary);
+    color: #ffffff;
+    background: var(--brand);
+    border-color: var(--brand);
     transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 6px 14px color-mix(in srgb, var(--brand) 35%, transparent);
+}
+
+.social-links a:focus-visible {
+    color: #ffffff;
+    background: var(--brand);
+    border-color: var(--brand);
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
 }
 
 /* Sidebar Navigation */
@@ -315,6 +443,132 @@ a:focus-visible,
     transform: none;
 }
 
+.sidebar-news {
+    margin-top: 8px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-light);
+    text-align: left;
+}
+
+.sidebar-news-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+}
+
+.sidebar-news-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+/* Vertical line joining the dots */
+.sidebar-news-list::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+.sidebar-news-list li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: var(--text-secondary);
+}
+
+.sidebar-news-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.42em;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
+    box-sizing: border-box;
+}
+
+/* Latest item stands out */
+.sidebar-news-list li:first-child::before {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.sidebar-news-year {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #475569;
+    letter-spacing: 0.02em;
+}
+
+.sidebar-media {
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-light);
+    text-align: left;
+}
+
+.sidebar-media-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-media-list li {
+    line-height: 1.4;
+}
+
+.sidebar-media-link {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    background: rgba(248, 250, 252, 0.85);
+    color: inherit;
+    box-shadow: var(--shadow-xs);
+}
+
+.sidebar-media-link:hover {
+    border-color: rgba(13, 148, 136, 0.28);
+    background: rgba(13, 148, 136, 0.05);
+    transform: translateX(2px);
+}
+
+.sidebar-media-source {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+}
+
+.sidebar-media-text {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
 .sidebar-footer {
     text-align: center;
     color: var(--text-tertiary);
@@ -331,7 +585,7 @@ a:focus-visible,
     --mx: 50vw;
     --my: 20vh;
     background:
-        radial-gradient(700px circle at var(--mx) var(--my), rgba(13, 148, 136, 0.14), transparent 55%),
+        radial-gradient(480px circle at var(--mx) var(--my), rgba(13, 148, 136, 0.09), transparent 60%),
         radial-gradient(900px circle at 80% 30%, rgba(56, 189, 248, 0.10), transparent 60%),
         linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
     position: relative;
@@ -372,7 +626,7 @@ a:focus-visible,
 .hero {
     margin-bottom: 70px;
     padding: 36px 34px;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 55%, #ecfeff 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border: 1px solid rgba(226, 232, 240, 0.95);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
@@ -387,11 +641,16 @@ a:focus-visible,
     margin-bottom: 14px;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
 .hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.9rem, 2.3vw + 1.1rem, 3.05rem);
-    line-height: 1.1;
-    letter-spacing: -0.6px;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 1.9vw + 0.9rem, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
     margin-bottom: 14px;
     color: var(--text-primary);
 }
@@ -472,16 +731,21 @@ a:focus-visible,
     color: var(--text-secondary);
     font-size: 0.92rem;
     line-height: 1.5;
+    margin: 0;
+    padding-left: 1.1em;
+}
+
+.mini-card-body li + li {
+    margin-top: 2px;
+}
+
+.mini-card-body li::marker {
+    color: var(--accent-primary);
 }
 
 .section {
-    margin-bottom: 90px;
-    padding: 34px 34px;
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid rgba(226, 232, 240, 0.92);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-xs);
-    backdrop-filter: blur(8px);
+    margin-bottom: 64px;
+    padding: 0;
 }
 
 @keyframes fadeInUp {
@@ -496,15 +760,66 @@ a:focus-visible,
 }
 
 .section-header {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.pub-sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    background: #f1f5f9;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+}
+
+.pub-sort-label {
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    padding: 0 6px 0 10px;
+}
+
+.pub-sort button {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pub-sort button:hover {
+    color: var(--text-primary);
+}
+
+.pub-sort button[aria-pressed="true"] {
+    background: #ffffff;
+    color: var(--accent-primary);
+    font-weight: 600;
+    box-shadow: var(--shadow-xs);
+}
+
+.pub-sort button:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
 }
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.85rem, 1.7vw + 1.2rem, 2.65rem);
+    font-size: clamp(1.5rem, 1.3vw + 1rem, 2.1rem);
+    font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 12px;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.03em;
     line-height: 1.15;
 }
 
@@ -513,16 +828,55 @@ a:focus-visible,
     font-size: 1rem;
 }
 
-.content-block {
-    max-width: 750px;
+.awards-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 680px;
 }
 
+.award-photo-card {
+    position: relative;
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xs);
+}
+
+.award-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    filter: saturate(0.85);
+    transition: filter 0.3s ease;
+}
+
+.award-photo-card:hover .award-photo {
+    filter: none;
+}
+
+/* Caption sits on a soft dark fade at the bottom of the photo */
+.award-photo-card figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 28px 12px 9px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(transparent, rgba(15, 23, 42, 0.72));
+}
+
+.content-block {
+    max-width: none; /* text uses the full width of the section */
+}
+
+
+/* first About Me paragraph: same look as the other paragraphs */
 .lead-text {
-    font-size: 1.3rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
     font-weight: 400;
-    margin-bottom: 2rem;
 }
 
 p {
@@ -554,12 +908,45 @@ p {
 
 /* Ensure prominent underline for key links in hero/lead prose. */
 .lead-text a {
+    color: var(--accent-primary); /* teal even when not hovered */
     background-size: 100% 2px;
+}
+
+.lead-text a:hover {
+    color: var(--accent-hover);
+}
+
+/* Google Scholar (publications subtitle): clear link color + underline */
+.section-subtitle a.scholar-link {
+    color: var(--accent-primary);
+    font-weight: 600;
+    text-decoration: none;
+    background-image: none;
+    background-size: auto;
+}
+
+.section-subtitle a.scholar-link:hover {
+    color: var(--accent-hover);
+    text-decoration: none;
 }
 
 strong {
     font-weight: 600;
     color: var(--text-primary);
+}
+
+/* Sidebar "Digit Robotics" link styling */
+.institution a.institution-link {
+    color: var(--accent-primary);
+    font-weight: 600;
+    text-decoration: none;
+    background-image: none;
+    background-size: auto;
+}
+
+.institution a.institution-link:hover {
+    color: var(--accent-hover);
+    text-decoration: none;
 }
 
 /* Research Tags */
@@ -594,25 +981,35 @@ strong {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    position: relative;
+}
+
+
+.pub-load-error {
+    color: var(--text-secondary);
+    padding: 1rem 0;
+    margin: 0;
 }
 
 .pub-item {
     display: flex;
-    gap: 35px;
-    padding: 35px;
-    background: var(--card-bg);
+    gap: 22px;
+    padding: 35px 18px 35px 22px;
+    /* frosted glass: see-through white over the soft color patches behind the list */
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border-radius: 12px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     position: relative;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 .pub-item:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    background: var(--card-hover);
-    border-color: rgba(13, 148, 136, 0.30);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
 }
 
 .pub-item.featured {
@@ -624,18 +1021,20 @@ strong {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    min-width: 120px;
+    min-width: 168px; /* same as thumbnail width, no extra side gap */
     flex-shrink: 0;
 }
 
 .pub-image {
-    width: 120px;
-    height: 160px;
-    border-radius: 12px;
+    width: 168px;
+    height: 126px; /* 4:3 frame */
+    aspect-ratio: 4 / 3;
+    border-radius: 8px; /* less round corners */
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: var(--border-light);
+    background: #ffffff;
+    border: 1px solid var(--border-light);
 }
 
 .pub-image:hover {
@@ -646,8 +1045,12 @@ strong {
 .pub-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+}
+
+.pub-image img.is-wide {
+    object-fit: cover;
 }
 
 .pub-details {
@@ -659,25 +1062,53 @@ strong {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
-    margin-left: 10px;
+    background: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fcd34d;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.award-ribbon i {
+    color: #f59e0b;
+    font-size: 0.72rem;
+}
+
+/* Group headings in the publication list (years or author role) */
+.pub-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    letter-spacing: 0.02em;
+    margin: 14px 0 -6px;
+}
+
+.pub-group:first-child {
+    margin-top: 0;
+}
+
+.pub-group::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
 }
 
 .pub-title {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
     color: var(--text-primary);
-    line-height: 1.5;
+    line-height: 1.45;
 }
 
 .pub-authors {
@@ -690,7 +1121,8 @@ strong {
 .pub-venue {
     display: flex;
     align-items: center;
-    gap: 10px;
+    flex-wrap: wrap; /* long venues + award badges wrap instead of overflowing */
+    gap: 6px 10px;
     margin-bottom: 18px;
 }
 
@@ -698,16 +1130,19 @@ strong {
     font-weight: 600;
     color: var(--text-primary);
     font-size: 0.95rem;
+    white-space: nowrap; /* keep venues like "ACM MobileHCI 2016" on one line */
 }
 
 .venue-type {
-    font-size: 0.75rem;
-    padding: 3px 10px;
-    background: var(--border-light);
-    color: var(--text-secondary);
-    border-radius: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 0.88rem;
+    color: #475569;
+    white-space: nowrap;
+}
+
+.venue-type::before {
+    content: '·';
+    margin-right: 10px;
+    color: var(--text-tertiary);
 }
 
 .pub-actions {
@@ -720,47 +1155,28 @@ strong {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.85rem;
-    padding: 8px 16px;
-    border: 1px solid rgba(226, 232, 240, 0.9);
-    border-radius: 20px;
-    color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.7);
-    transition: all 0.3s;
-    font-weight: 500;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 11px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #1e293b;
+    background: #f1f5f9;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .action-btn:hover {
-    border-color: var(--accent-primary);
+    color: #0f172a;
+    background: #e2e8f0;
+}
+
+/* Only the icons carry color */
+.action-btn.primary i {
     color: var(--accent-primary);
-    background: rgba(13, 148, 136, 0.05);
 }
 
-.action-btn.primary {
-    background: var(--accent-primary);
-    color: white;
-    border-color: var(--accent-primary);
-}
-
-.action-btn.primary:hover {
-    background: var(--accent-hover);
-    border-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-/* Video buttons (YouTube) */
-.action-btn.video-btn {
-    background: #ef4444;
-    border-color: #ef4444;
-    color: #ffffff;
-}
-
-.action-btn.video-btn:hover {
-    background: #dc2626;
-    border-color: #dc2626;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+.action-btn.video-btn i {
+    color: #ff0000;
 }
 
 /* News Timeline */
@@ -837,11 +1253,11 @@ strong {
 /* Responsive */
 @media (max-width: 1100px) {
     .main-content {
-        padding: 56px 46px;
+        padding: 56px 23px;
     }
 
     .hero-title {
-        font-size: clamp(1.75rem, 2.0vw + 1.05rem, 2.6rem);
+        font-size: clamp(1.5rem, 1.7vw + 0.85rem, 2.15rem);
     }
 }
 
@@ -883,12 +1299,16 @@ strong {
     }
 
     .name {
-        font-size: 1.65rem;
+        font-size: 1.45rem;
         margin-bottom: 6px;
     }
 
     .institution {
         margin-bottom: 14px;
+    }
+
+    .cv-btn {
+        margin-bottom: 16px;
     }
 
     .social-links {
@@ -903,6 +1323,49 @@ strong {
         gap: 10px;
         margin-bottom: 14px;
         grid-column: 1 / -1;
+    }
+
+    .sidebar-news {
+        grid-column: 1 / -1;
+        margin-top: 4px;
+        padding-top: 14px;
+    }
+
+    .sidebar-media {
+        grid-column: 1 / -1;
+        margin-top: 18px;
+        padding-top: 14px;
+    }
+
+    /* Media Coverage: bounded height + scroll on narrow layouts (avoids endless page swipe). */
+    .sidebar-media-list {
+        max-height: min(40vh, 280px);
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        padding-right: 6px;
+        margin-right: -2px;
+        scrollbar-gutter: stable;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(148, 163, 184, 0.9) rgba(241, 245, 249, 0.95);
+    }
+
+    .sidebar-media-list::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .sidebar-media-list::-webkit-scrollbar-track {
+        background: rgba(241, 245, 249, 0.95);
+        border-radius: 999px;
+    }
+
+    .sidebar-media-list::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.9);
+        border-radius: 999px;
+    }
+
+    .sidebar-media-list::-webkit-scrollbar-thumb:hover {
+        background: rgba(100, 116, 139, 0.95);
     }
 
     .nav-link {
@@ -938,8 +1401,13 @@ strong {
     }
 
     .section {
-        padding: 22px 18px;
+        padding: 0;
         margin-bottom: 44px;
+    }
+
+    .awards-gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
     }
 
     .pub-item {
@@ -955,18 +1423,18 @@ strong {
     }
 
     .pub-image {
-        width: 100px;
-        height: 133px;
+        width: 144px;
+        height: 108px; /* 4:3 frame */
     }
 }
 
 @media (max-width: 600px) {
-    .section-title {
-        font-size: 2rem;
+    .venue-name {
+        white-space: normal; /* long journal names wrap on phones */
     }
 
-    .lead-text {
-        font-size: 1.1rem;
+    .section-title {
+        font-size: 1.6rem;
     }
 
     .pub-title {
@@ -974,11 +1442,895 @@ strong {
     }
 
     .hero-title {
-        font-size: 1.85rem;
+        font-size: 1.55rem;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { animation: none !important; transition: none !important; }
+}
+
+
+/* =====================================================================
+   Liquid Glass theme
+   Translucent, blurred glass panels with a glossy sheen and bright edge
+   highlights, floating over a soft, colorful light background.
+   Everything for this look lives in this block, so it is easy to tweak
+   or remove.
+   ===================================================================== */
+
+:root {
+    --glass-fill: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.66) 0%,
+        rgba(255, 255, 255, 0.30) 48%,
+        rgba(255, 255, 255, 0.46) 100%);
+    --glass-fill-light: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.58) 0%,
+        rgba(255, 255, 255, 0.26) 100%);
+    --glass-blur: blur(24px) saturate(180%);
+    --glass-blur-small: blur(14px) saturate(170%);
+    --glass-edge: rgba(255, 255, 255, 0.72);
+    /* bright rim on top and left, soft glow underneath, gentle drop shadow */
+    --glass-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 1px 0 0 rgba(255, 255, 255, 0.45),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.30),
+        0 12px 32px rgba(15, 35, 52, 0.08),
+        0 1px 3px rgba(15, 35, 52, 0.06);
+    --glass-shadow-small:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.25),
+        0 2px 8px rgba(30, 41, 90, 0.07);
+}
+
+/* Colorful light behind everything (fixed, so glass always has color to blur) */
+body {
+    background: #f4f6f8;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(45% 50% at 6% 8%, rgba(45, 212, 191, 0.10), transparent 70%),
+        radial-gradient(40% 45% at 96% 4%, rgba(56, 189, 248, 0.10), transparent 70%),
+        radial-gradient(45% 50% at 92% 96%, rgba(45, 212, 191, 0.08), transparent 70%),
+        linear-gradient(180deg, #f7f9fa, #f2f5f7);
+}
+
+/* The outer frame becomes invisible; the panels float on the background */
+.page-wrapper {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.page-wrapper::before,
+.page-wrapper::after {
+    display: none;
+}
+
+.main-content {
+    /* only a soft white light that follows the cursor */
+    background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.5), transparent 60%);
+    overflow-x: clip; /* keep its decorative color blobs from widening the page */
+}
+
+/* The old decorative color blobs in the main area are not needed on the clean glass background */
+.main-content::before,
+.main-content::after {
+    display: none;
+}
+
+/* Let finished reveal animations stop isolating their content,
+   otherwise the glass inside them can't see the background */
+.reveal.is-visible {
+    will-change: auto;
+}
+
+/* ---- Large glass panels ---- */
+.sidebar,
+.hero,
+.pub-item {
+    background: var(--glass-fill);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-edge);
+    box-shadow: var(--glass-shadow);
+}
+
+.sidebar {
+    margin: 14px 0 14px 14px;
+    border-radius: 28px;
+    align-self: flex-start;
+    /* scroll with the page: the sidebar is taller than most screens */
+    position: relative;
+    top: auto;
+}
+
+.hero {
+    border-radius: 28px;
+}
+
+.pub-item {
+    border-radius: 22px;
+}
+
+.pub-item:hover {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.78) 0%,
+        rgba(255, 255, 255, 0.42) 50%,
+        rgba(255, 255, 255, 0.56) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        inset 1px 0 0 rgba(255, 255, 255, 0.5),
+        0 18px 40px rgba(30, 41, 90, 0.13),
+        0 3px 8px rgba(30, 41, 90, 0.06);
+}
+
+
+/* ---- Smaller glass pieces ---- */
+.mini-card,
+.sidebar-media-link,
+.pub-sort,
+.social-links a,
+.action-btn,
+.nav-link.active,
+.nav-link[aria-current="true"] {
+    background: var(--glass-fill-light);
+    -webkit-backdrop-filter: var(--glass-blur-small);
+    backdrop-filter: var(--glass-blur-small);
+    border: 1px solid var(--glass-edge);
+    box-shadow: var(--glass-shadow-small);
+}
+
+.mini-card {
+    border-radius: 18px;
+}
+
+.sidebar-media-link {
+    border-radius: 16px;
+}
+
+.sidebar-media-link:hover {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: #ffffff;
+}
+
+.nav-link {
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.pub-sort button[aria-pressed="true"] {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 1px 4px rgba(30, 41, 90, 0.10), inset 0 1px 0 #ffffff;
+}
+
+.action-btn {
+    border-radius: 999px;
+    padding: 5px 13px;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.social-links a:hover {
+    border-color: var(--brand);
+}
+
+/* ---- Images get rounder, glassy frames ---- */
+.pub-image {
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+
+.award-photo-card {
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 12px 30px rgba(30, 41, 90, 0.12);
+}
+
+.profile-img-container {
+    box-shadow: 0 12px 30px rgba(30, 41, 90, 0.18), 0 0 0 4px rgba(255, 255, 255, 0.7);
+}
+
+/* ---- Dividers become light instead of gray ---- */
+.sidebar-news,
+.sidebar-media {
+    border-top-color: rgba(255, 255, 255, 0.8);
+}
+
+.footer {
+    border-top-color: rgba(255, 255, 255, 0.8);
+}
+
+.pub-group::after {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* ---- Phones: sidebar becomes a floating glass card at the top ---- */
+@media (max-width: 900px) {
+    .sidebar {
+        margin: 0 0 14px;
+        width: auto;
+        border-radius: 24px;
+        top: 0;
+        border-bottom: 1px solid var(--glass-edge);
+    }
+}
+
+
+/* =====================================================================
+   Cursor effects (mouse only; off for reduced-motion visitors)
+   1. A targeting reticle: dot + corner brackets that lock onto links
+   2. Glass panels catch a soft shine where the cursor is
+   ===================================================================== */
+
+/* Dot that sits exactly on the cursor */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9), 0 0 8px rgba(13, 148, 136, 0.6);
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.05s linear;
+}
+
+/* Four corner brackets that trail the cursor and lock onto links */
+.cursor-frame {
+    --c: var(--accent-primary);
+    --len: 8px;
+    --w: 2px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    border-radius: 4px;
+    background:
+        linear-gradient(var(--c), var(--c)) top left / var(--len) var(--w),
+        linear-gradient(var(--c), var(--c)) top left / var(--w) var(--len),
+        linear-gradient(var(--c), var(--c)) top right / var(--len) var(--w),
+        linear-gradient(var(--c), var(--c)) top right / var(--w) var(--len),
+        linear-gradient(var(--c), var(--c)) bottom left / var(--len) var(--w),
+        linear-gradient(var(--c), var(--c)) bottom left / var(--w) var(--len),
+        linear-gradient(var(--c), var(--c)) bottom right / var(--len) var(--w),
+        linear-gradient(var(--c), var(--c)) bottom right / var(--w) var(--len);
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 3px rgba(13, 148, 136, 0.45));
+    transition: opacity 0.2s ease, --len 0.2s ease;
+}
+
+.cursor-dot.is-visible,
+.cursor-frame.is-visible {
+    opacity: 1;
+}
+
+/* Locked onto a link or button: longer brackets and a faint tinted fill */
+.cursor-frame.is-locked {
+    --len: 12px;
+    background-color: rgba(13, 148, 136, 0.06);
+}
+
+/* Quick pulse on click */
+.cursor-frame.is-down {
+    animation: reticle-pulse 0.35s ease-out;
+}
+
+@keyframes reticle-pulse {
+    0%   { filter: drop-shadow(0 0 3px rgba(13, 148, 136, 0.45)); }
+    40%  { filter: drop-shadow(0 0 10px rgba(13, 148, 136, 0.9)); }
+    100% { filter: drop-shadow(0 0 3px rgba(13, 148, 136, 0.45)); }
+}
+
+@property --len {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 8px;
+}
+
+/* Shine that follows the cursor across glass panels */
+.sidebar,
+.hero,
+.pub-item,
+.mini-card {
+    --px: -999px;
+    --py: -999px;
+}
+
+.sidebar,
+.hero,
+.pub-item {
+    background:
+        radial-gradient(320px circle at var(--px) var(--py), rgba(255, 255, 255, 0.55), transparent 60%),
+        var(--glass-fill);
+}
+
+.pub-item:hover {
+    background:
+        radial-gradient(320px circle at var(--px) var(--py), rgba(255, 255, 255, 0.6), transparent 60%),
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.78) 0%,
+            rgba(255, 255, 255, 0.42) 50%,
+            rgba(255, 255, 255, 0.56) 100%);
+}
+
+.mini-card {
+    background:
+        radial-gradient(200px circle at var(--px) var(--py), rgba(255, 255, 255, 0.6), transparent 60%),
+        var(--glass-fill-light);
+}
+
+
+/* =====================================================================
+   Robot touches
+   - monospace "readout" labels
+   - hand-tracking skeleton + scan line in the hero
+   - TARGET label on the cursor reticle
+   ===================================================================== */
+
+/* ---- Monospace readouts for small technical labels ---- */
+.hero-topline,
+.sidebar-news-year,
+.sidebar-news-title,
+.venue-type,
+.pub-group,
+.pub-sort-label,
+.sidebar-media-source,
+.cursor-label {
+    font-family: var(--font-mono);
+}
+
+.hero-topline {
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.sidebar-news-year {
+    font-size: 0.74rem;
+    letter-spacing: 0;
+}
+
+.sidebar-news-title {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+}
+
+.venue-type {
+    font-size: 0.8rem;
+}
+
+.pub-group {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.sidebar-media-source {
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+}
+
+/* ---- Hand-tracking visual + scan line in the hero ---- */
+.hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero > *:not(.hero-vision) {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-vision {
+    position: absolute;
+    top: 22px;
+    right: 40px;
+    height: 175px;           /* stays in the top-right corner, above the cards */
+    aspect-ratio: 200 / 250;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+/* keep the intro text clear of the hand */
+.hero-topline,
+.hero-title,
+.hero-subtitle {
+    max-width: calc(100% - 175px);
+}
+
+.hand-skeleton {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    animation: hand-drift 9s ease-in-out infinite alternate;
+    transform-origin: 50% 90%;
+}
+
+.hand-bones line {
+    stroke: rgba(13, 148, 136, 0.45);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+}
+
+.hand-joints circle {
+    fill: #ffffff;
+    stroke: var(--accent-primary);
+    stroke-width: 1.6;
+    animation: joint-blink 2.4s ease-in-out infinite;
+    animation-delay: var(--d);
+}
+
+.hand-box path {
+    fill: none;
+    stroke: rgba(13, 148, 136, 0.7);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+}
+
+.hand-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    fill: var(--accent-primary);
+    letter-spacing: 0.04em;
+}
+
+@keyframes hand-drift {
+    from { transform: rotate(-3deg) translateY(2px); }
+    to   { transform: rotate(3deg) translateY(-3px); }
+}
+
+@keyframes joint-blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+
+/* ---- Scan effect: pick one with a class on the hero ----
+   .scan-lidar  a scan line sweeps down and back up the hero
+   .scan-radar  a round radar beam rotates around the hand            */
+
+/* A: clean LiDAR line — a bright thin core, a soft teal glow around it, and a
+   rounded haze trailing behind. Everything fades out toward the hero's edges. */
+.hero.scan-lidar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(var(--scan-y) - 90px);   /* line sits at the bottom edge of this layer */
+    height: 90px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: var(--scan-o);
+    background:
+        /* bright core */
+        radial-gradient(ellipse 72% 1.2px at 50% calc(100% - 1px),
+            rgba(255, 255, 255, 1), rgba(var(--scan-core), 0.95) 50%, transparent 100%),
+        /* soft glow around the core */
+        radial-gradient(ellipse 80% 8px at 50% calc(100% - 1px),
+            rgba(var(--scan-glow), 0.7), rgba(var(--scan-glow), 0.22) 55%, transparent 100%),
+        /* faint, short haze just behind the line (kept light so lit letters stay readable) */
+        radial-gradient(ellipse 80% 35% at 50% 100%,
+            rgba(var(--scan-glow), 0.08), transparent 100%);
+}
+
+@media (max-width: 700px) {
+    .hero-vision { display: none; }
+
+    .hero-topline,
+    .hero-title,
+    .hero-subtitle { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hand-skeleton,
+    .hand-joints circle { animation: none; }
+    .hero.scan-lidar::after { animation: none; display: none; }
+}
+
+/* ---- TARGET label on the cursor reticle ---- */
+.cursor-label {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    color: #ffffff;
+    background: rgba(13, 148, 136, 0.9);
+    box-shadow: 0 2px 6px rgba(13, 148, 136, 0.35);
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.cursor-label.is-visible {
+    opacity: 1;
+}
+
+
+/* No extra space under a section's subtitle line (the header margin is enough) */
+.section-header .section-subtitle {
+    margin-bottom: 0;
+}
+
+/* Line the top of the main content up with the floating sidebar (side-by-side layout only) */
+@media (min-width: 901px) {
+    .main-content {
+        padding-top: 14px;
+    }
+}
+
+/* Orbitron runs wide, so the name and hero title are a little smaller */
+.name {
+    font-size: 1.6rem;
+    letter-spacing: 0;
+}
+
+.hero-title {
+    font-size: clamp(1.45rem, 1.4vw + 0.8rem, 2.05rem);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.section-title {
+    letter-spacing: 0;
+}
+
+@media (max-width: 900px) {
+    .name { font-size: 1.35rem; }
+    .hero-title { font-size: 1.4rem; }
+}
+
+/* Name, role and company share one font (Orbitron) so they read as one block */
+.role,
+.institution,
+.institution a.institution-link {
+    font-family: var(--font-display);
+}
+
+.role {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+}
+
+.institution,
+.institution a.institution-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Recent News: slightly smaller text so each item fits on one line */
+.sidebar-news-list li {
+    font-size: 0.83rem;
+    letter-spacing: -0.01em;
+}
+
+
+/* =====================================================================
+   Scan line reacting to content (driven by a small script)
+   - hero title: the letters under the line light up in a thin teal band
+   - highlight/focus boxes: soft teal edge glow while the line crosses
+   - hand skeleton: joints light up as the line passes
+   ===================================================================== */
+/* Scan wipe: letters light up exactly at the line and switch back to normal
+   --trail px behind it, so a lit band travels down through each letter.
+   --sy = line position inside the element (set by the script). */
+.hero-title        { --band-base: var(--text-primary); }
+.hero-subtitle     { --band-base: #334155; }
+.mini-card-title   { --band-base: var(--text-primary); }
+.mini-card-body li { --band-base: var(--text-secondary); }
+
+.scan-text {
+    --trail: 8px;    /* fully lit band right at the line */
+    --tail: 96px;    /* then the teal fades back to normal over this distance (~0.7s) */
+    --lit-color: #14b8a6;
+    background-image: linear-gradient(180deg,
+        var(--band-base) 0,
+        var(--band-base) calc(var(--sy) - var(--trail) - var(--tail)),
+        var(--lit-color) calc(var(--sy) - var(--trail)),
+        var(--lit-color) calc(var(--sy) - 2px),
+        rgb(var(--scan-glow)) calc(var(--sy) - 2px),
+        rgb(var(--scan-glow)) var(--sy),
+        var(--band-base) var(--sy),
+        var(--band-base) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.scan-text strong {
+    color: transparent;
+}
+
+.mini-card {
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Box edges: only the part of the border at the scan line lights up (wipe),
+   with the same fading tail as the text. --cy = line position inside the box. */
+.mini-card {
+    position: relative;
+    --edge-trail: 8px;
+    --edge-tail: 70px;
+}
+
+.mini-card::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;                       /* thickness of the lit edge */
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(180deg,
+        transparent 0,
+        transparent calc(var(--cy) - var(--edge-trail) - var(--edge-tail)),
+        rgba(20, 184, 166, 0.85) calc(var(--cy) - var(--edge-trail)),
+        rgb(var(--scan-glow)) calc(var(--cy) - 2px),
+        rgb(var(--scan-core)) var(--cy),
+        transparent var(--cy),
+        transparent 100%);
+    /* show the gradient only on the border ring */
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+.mini-card.is-scanned::after {
+    opacity: 1;
+}
+
+/* going back up: lit edge at the line, tail below it */
+.hero.scan-up .mini-card::after {
+    background: linear-gradient(180deg,
+        transparent 0,
+        transparent var(--cy),
+        rgb(var(--scan-core)) var(--cy),
+        rgb(var(--scan-glow)) calc(var(--cy) + 2px),
+        rgba(20, 184, 166, 0.85) calc(var(--cy) + var(--edge-trail)),
+        transparent calc(var(--cy) + var(--edge-trail) + var(--edge-tail)),
+        transparent 100%);
+}
+
+.hand-joints circle {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: fill 0.4s ease, transform 0.4s ease;
+}
+
+.hand-joints circle.is-hit {
+    fill: #14b8a6;      /* teal, not the line's green */
+    stroke: #0f766e;
+    transform: scale(1.8);
+    transition: none;
+    filter: drop-shadow(0 0 4px rgba(45, 212, 191, 0.95));
+}
+
+
+/* LiDAR dots: a fixed grid of points revealed only just above the scan line,
+   fading out behind it. --scan-y (line position in the hero) is set by the script. */
+.hero.scan-lidar {
+    --scan-y: -200px;
+    --scan-o: 0;
+    /* scan line color (r, g, b): change these two to recolor the line, text edge and joints */
+    --scan-core: 170, 255, 190;   /* terminal green: light core */
+    --scan-glow: 34, 230, 90;     /* terminal green: glow (#22E65A) */
+}
+
+.hero.scan-lidar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* teal points */
+    background: #0d9488;
+    /* show the color only as points, and only in a narrow band just above the line */
+    -webkit-mask:
+        linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, #000 100%)
+            0 calc(var(--scan-y) - 80px) / 100% 80px no-repeat,
+        /* scan rows: each laser beam leaves a row of fine points ... */
+        radial-gradient(circle, #000 0.9px, transparent 1.3px) 0 0 / 5px 6px,
+        /* ... with gaps where no return came back (cut out of the rows) */
+        radial-gradient(circle, #000 1.4px, transparent 1.6px) 2px 0 / 13px 6px,
+        radial-gradient(circle, #000 1.4px, transparent 1.6px) 7px 0 / 23px 12px;
+    -webkit-mask-composite: source-in, source-out, source-over;
+    mask:
+        linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, #000 100%)
+            0 calc(var(--scan-y) - 80px) / 100% 80px no-repeat,
+        /* scan rows: each laser beam leaves a row of fine points ... */
+        radial-gradient(circle, #000 0.9px, transparent 1.3px) 0 0 / 5px 6px,
+        /* ... with gaps where no return came back (cut out of the rows) */
+        radial-gradient(circle, #000 1.4px, transparent 1.6px) 2px 0 / 13px 6px,
+        radial-gradient(circle, #000 1.4px, transparent 1.6px) 7px 0 / 23px 12px;
+    mask-composite: intersect, subtract, add;
+    /* fade together with the line, so no dots linger at the end of a pass */
+    opacity: calc(0.75 * var(--scan-o));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero.scan-lidar::before { display: none; }
+}
+
+
+/* =====================================================================
+   Scan going back UP: everything that trails the line flips to below it.
+   The script adds .scan-up to the hero while the line moves upward.
+   ===================================================================== */
+
+/* line + haze: haze now sits below the line */
+.hero.scan-lidar.scan-up::after {
+    top: var(--scan-y);                 /* line sits at the top edge of this layer */
+    background:
+        radial-gradient(ellipse 72% 1.2px at 50% 1px,
+            rgba(255, 255, 255, 1), rgba(var(--scan-core), 0.95) 50%, transparent 100%),
+        radial-gradient(ellipse 80% 8px at 50% 1px,
+            rgba(var(--scan-glow), 0.7), rgba(var(--scan-glow), 0.22) 55%, transparent 100%),
+        radial-gradient(ellipse 80% 35% at 50% 0%,
+            rgba(var(--scan-glow), 0.08), transparent 100%);
+}
+
+/* dots: band just below the line, fading downward */
+.hero.scan-lidar.scan-up::before {
+    -webkit-mask:
+        linear-gradient(0deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, #000 100%)
+            0 var(--scan-y) / 100% 80px no-repeat,
+        /* scan rows: each laser beam leaves a row of fine points ... */
+        radial-gradient(circle, #000 0.9px, transparent 1.3px) 0 0 / 5px 6px,
+        /* ... with gaps where no return came back (cut out of the rows) */
+        radial-gradient(circle, #000 1.4px, transparent 1.6px) 2px 0 / 13px 6px,
+        radial-gradient(circle, #000 1.4px, transparent 1.6px) 7px 0 / 23px 12px;
+    -webkit-mask-composite: source-in, source-out, source-over;
+    mask:
+        linear-gradient(0deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, #000 100%)
+            0 var(--scan-y) / 100% 80px no-repeat,
+        /* scan rows: each laser beam leaves a row of fine points ... */
+        radial-gradient(circle, #000 0.9px, transparent 1.3px) 0 0 / 5px 6px,
+        /* ... with gaps where no return came back (cut out of the rows) */
+        radial-gradient(circle, #000 1.4px, transparent 1.6px) 2px 0 / 13px 6px,
+        radial-gradient(circle, #000 1.4px, transparent 1.6px) 7px 0 / 23px 12px;
+    mask-composite: intersect, subtract, add;
+}
+
+/* text: letters light up from the bottom, lit band trails below the line */
+.hero.scan-up .scan-text {
+    background-image: linear-gradient(180deg,
+        var(--band-base) 0,
+        var(--band-base) var(--sy),
+        rgb(var(--scan-glow)) var(--sy),
+        rgb(var(--scan-glow)) calc(var(--sy) + 2px),
+        var(--lit-color) calc(var(--sy) + 2px),
+        var(--lit-color) calc(var(--sy) + var(--trail)),
+        var(--band-base) calc(var(--sy) + var(--trail) + var(--tail)),
+        var(--band-base) 100%);
+}
+
+
+/* =====================================================================
+   RADAR mode (.hero.scan-radar): a round radar beam rotates around the
+   hand skeleton. Set by a small script:
+     --ra          beam angle (deg, 0 = up, clockwise)
+     --rcx, --rcy  radar center inside the hero (px)
+   ===================================================================== */
+.hero.scan-radar {
+    --ra: 0deg;
+    --rcx: 80%;
+    --rcy: 25%;
+    --radar-tail: 70deg;   /* fading wedge behind the beam */
+    --scan-core: 170, 255, 190;   /* terminal green, same as the LiDAR line */
+    --scan-glow: 34, 230, 90;
+}
+
+/* range rings around the radar center */
+.hero.scan-radar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        repeating-radial-gradient(circle at var(--rcx) var(--rcy),
+            transparent 0 69px, rgba(13, 148, 136, 0.13) 69px 70px);
+    -webkit-mask: radial-gradient(circle at var(--rcx) var(--rcy), #000 0, #000 35%, transparent 75%);
+    mask: radial-gradient(circle at var(--rcx) var(--rcy), #000 0, #000 35%, transparent 75%);
+}
+
+/* the beam: a bright green edge with a teal wedge fading behind it */
+.hero.scan-radar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: conic-gradient(from calc(var(--ra) - var(--radar-tail)) at var(--rcx) var(--rcy),
+        rgba(20, 184, 166, 0) 0deg,
+        rgba(20, 184, 166, 0.16) calc(var(--radar-tail) - 1.5deg),
+        rgba(var(--scan-glow), 0.9) calc(var(--radar-tail) - 0.6deg),
+        rgba(var(--scan-core), 1) var(--radar-tail),
+        transparent var(--radar-tail),
+        transparent 360deg);
+    -webkit-mask: radial-gradient(circle at var(--rcx) var(--rcy), #000 0, #000 30%, transparent 80%);
+    mask: radial-gradient(circle at var(--rcx) var(--rcy), #000 0, #000 30%, transparent 80%);
+}
+
+/* text: letters light up exactly where the beam passes, fading in the wedge behind it.
+   --rx/--ry = radar center relative to the element (set by the script). */
+.radar-text {
+    --radar-text-tail: 40deg;
+    background-image: conic-gradient(from calc(var(--ra) - var(--radar-text-tail)) at var(--rx) var(--ry),
+        var(--band-base) 0deg,
+        #14b8a6 calc(var(--radar-text-tail) - 2deg),
+        rgb(var(--scan-glow)) calc(var(--radar-text-tail) - 1deg),
+        rgb(var(--scan-glow)) var(--radar-text-tail),
+        var(--band-base) var(--radar-text-tail),
+        var(--band-base) 360deg);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.radar-text strong {
+    color: transparent;
+}
+
+/* box edges: only the part of the border under the beam lights up */
+.mini-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    pointer-events: none;
+    opacity: 0;
+    background: conic-gradient(from calc(var(--ra) - 50deg) at var(--rx) var(--ry),
+        transparent 0deg,
+        rgba(20, 184, 166, 0.85) 48deg,
+        rgb(var(--scan-glow)) 49deg,
+        rgb(var(--scan-core)) 50deg,
+        transparent 50deg,
+        transparent 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+}
+
+.mini-card.radar-edge::before {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero.scan-radar::after { display: none; }
 }
